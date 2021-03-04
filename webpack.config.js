@@ -23,6 +23,14 @@ module.exports = {
         test: /.(css|scss)$/,
         exclude: /node_modules/,
         use: ["style-loader", "css-loader", "sass-loader"]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
       }
     ]
   },
@@ -32,7 +40,7 @@ module.exports = {
     publicPath: "http://localhost:8080/build",
     proxy: {
       '/api': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost:4000',
         secure: false,
       }
     },

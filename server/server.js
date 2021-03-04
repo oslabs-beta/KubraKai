@@ -2,6 +2,17 @@ const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
 const app = express();
+const path = require('path')
+
+//Jordan added this
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/build', express.static(path.resolve(__dirname, '../build')));
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../index.html"));
+});
+//to here
  
 // Construct a schema, using GraphQL schema language
 const schema = buildSchema(`
