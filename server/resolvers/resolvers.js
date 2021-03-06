@@ -8,6 +8,7 @@ const prisma = new PrismaClient();
 module.exports = {
 	Query: {
 		allUsers: (parent, args) => {
+			console.log('here')
  		  return prisma.users.findMany();
 	}, 
 		getMetrics: (parent, args) => {

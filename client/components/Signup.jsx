@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField';
@@ -7,24 +7,24 @@ import Account from './Account.jsx'
 import { gql, useMutation, useQuery } from '@apollo/client';
 
 
-const CREATE_USER = gql`
-  mutation CreateUser($type: User) {
-    createUser(firstname: String, lastname: String, email: String, pwd: String) {
-      firstname
-      lastname
-      email
-      pwd
-    }
-  }
-`;
+// const CREATE_USER = gql`
+//   mutation createUser($type: User) {
+//     createUser(firstname: String, lastname: String, email: String, pwd: String) {
+//       firstname
+//       lastname
+//       email
+//       pwd
+//     }
+//   }
+// `;
 const GET_USERS = gql`
-  query allUsers($type: User) {
-      allUsers {
+  query allUsers {
+    allUsers {
         firstname
         lastname
         email
         pwd
-      }
+    }
   }`
 
 
@@ -58,17 +58,21 @@ export default function Signup(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const classes = useStyles();
-  const [createUser] = useMutation(CREATE_USER);
+  // const [createUser] = useMutation(CREATE_USER);
   const {loading, error, data } = useQuery(GET_USERS); 
  
-  const createNewUser = () => {
-    console.log(firstName)
-    return createUser({ variables: { firstName, lastName, email, password }})
-  }
+  useEffect(() => {
+    console.log('data ->>>', data);
+  },[data])
 
-  const getAllUsers = () => {
-    console.log(data);
-  }
+  // const createNewUser = () => {
+  //   console.log(firstName)
+  //   return createUser({ variables: { firstName, lastName, email, password }})
+  // }
+
+  // const getAllUsers = () => {
+  //   console.log(data);
+  // }
 
   return(
       <Router>
@@ -97,7 +101,7 @@ export default function Signup(){
                             onChange={event => setPassword(event.target.value)} 
                             variant="outlined" />
                     <Button><Link to="/account"
-                          onClick={() => {getAllUsers()}}
+                          onClick={() => {}}
                             >SIGN UP</Link></Button>
                   </Route>
                   <Route path="/account">
