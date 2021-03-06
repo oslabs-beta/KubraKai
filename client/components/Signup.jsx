@@ -18,7 +18,7 @@ import { gql, useMutation, useQuery } from '@apollo/client';
 //   }
 // `;
 const GET_USERS = gql`
-  query allUsers {
+  query getUsers {
     allUsers {
         firstname
         lastname
@@ -58,7 +58,7 @@ export default function Signup(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const classes = useStyles();
-  // const [createUser] = useMutation(CREATE_USER);
+  // const [createUser, { data }] = useMutation(CREATE_USER);
   const {loading, error, data } = useQuery(GET_USERS); 
  
   useEffect(() => {
@@ -82,22 +82,22 @@ export default function Signup(){
                   <h2>CREATE AN ACCOUNT</h2>
                     <TextField id="outlined-basic" 
                             label = "firstName" 
-                            classname = {classes.textField}
+                            className = {classes.textField}
                             onChange={event => setFirstName(event.target.value)} 
                             variant="outlined" />
                     <TextField id="outlined-basic" 
                             label = "lastName" 
-                            classname = {classes.textField}
+                            className = {classes.textField}
                             onChange={event => setLastName(event.target.value)} 
                             variant="outlined" />
                     <TextField id="outlined-basic" 
                             label = "email" 
-                            classname = {classes.textField}
+                            className = {classes.textField}
                             onChange={event => setEmail(event.target.value)} 
                             variant="outlined" />
                     <TextField id="outlined-basic" 
                             label = "password" 
-                            classname = {classes.textField}
+                            className = {classes.textField}
                             onChange={event => setPassword(event.target.value)} 
                             variant="outlined" />
                     <Button><Link to="/account"
@@ -112,5 +112,5 @@ export default function Signup(){
       </section>
 
       </Router>
-    )
+  )
 };
