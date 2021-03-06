@@ -1,8 +1,23 @@
 const express = require('express');
-const { graphqlHTTP } = require('express-graphql');
-const { buildSchema } = require('graphql');
-const app = express();
+const mongoose = require('mongoose')
+const cors = require('cors'); 
 const path = require('path')
+const { ApolloServer } = require('apollo-server-express');
+const typeDefs = require('./schemas/schema');
+const resolvers = require('./resolvers/resolvers')
+const bodyParser = require('body-parser')
+const mongoSchema = require('./schemas/metricsModel.js')
+const app = express();
+const url = "mongodb+srv://KubraKai:codesmith@cluster0.btqz2.mongodb.net/kubrakai?retryWrites=true&w=majority";
+
+const connect = mongoose.connect(url, { useNewUrlParser: true });
+connect.then((db) => {
+      console.log('Connected correctly to server!');
+}, (err) => {
+      console.log(err);
+});
+app.use(bodyParser.json());
+app.use('*', cors());
 
 //Jordan added this
 app.use(express.json());
@@ -12,26 +27,28 @@ app.use('/build', express.static(path.resolve(__dirname, '../build')));
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../index.html"));
 });
-//to here
- 
-// Construct a schema, using GraphQL schema language
-const schema = buildSchema(`
-  type Query {
-    hello: String
-  }
-`);
- 
-// The root provides a resolver function for each API endpoint
-const root = {
-  hello: () => {
-    return 'Hello world!';
-  },
-};
- 
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true,
-}));
-app.listen(4000);
-console.log('Running a GraphQL API server at http://localhost:4000/graphql');
+
+const server = new ApolloServer({ 
+  introspection: true, 
+  playground: true,
+  resolvers, 
+  typeDefs });
+
+// const mongoServer = new ApolloServer({
+//   interospection: true,
+//   playgroud: true,
+//   typeDefs: mongoSchema,
+//   resolvers
+// })
+
+server.applyMiddleware({ app });
+
+app.use((req, res) => {
+  res.status(200);
+  res.send('Hello!');
+  res.end();
+});
+
+app.listen({ port: 4000 }, () =>
+  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+)

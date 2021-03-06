@@ -39,7 +39,7 @@ module.exports = {
     port: 8080,
     publicPath: "http://localhost:8080/build",
     proxy: {
-      '/api': {
+      '/': {
         target: 'http://localhost:4000',
         secure: false,
       }
@@ -49,3 +49,4 @@ module.exports = {
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
 }
+
