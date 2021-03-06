@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import Account from './Account.jsx'
 import { gql, useMutation, useQuery } from '@apollo/client';
 
-
+/*POTENTIAL USER CREATION */
 // const CREATE_USER = gql`
 //   mutation createUser($type: User) {
 //     createUser(firstname: String, lastname: String, email: String, pwd: String) {
@@ -61,6 +61,7 @@ export default function Signup(){
   // const [createUser, { data }] = useMutation(CREATE_USER);
   const {loading, error, data } = useQuery(GET_USERS); 
  
+  //TO BE CHANGED INTO EVENT HANDLER//
   useEffect(() => {
     console.log('data ->>>', data);
   },[data])
