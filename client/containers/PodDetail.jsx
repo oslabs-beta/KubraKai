@@ -8,7 +8,7 @@ function PodDetail(props){
   return(
     <div>
       my pod thing
-  <PodGraph />
+  <PodGraph/>
     </div>
    
   )
