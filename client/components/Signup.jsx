@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button'; 
-import Account from './Account.jsx'
+import Account from '../containers/Account.jsx'
 import { gql, useMutation, useQuery } from '@apollo/client';
 
 /*POTENTIAL USER CREATION */

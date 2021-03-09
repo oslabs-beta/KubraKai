@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField'; 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Account from './Account.jsx'
+import Account from '../containers/Account.jsx'
 import Signup from './Signup.jsx'
 import Logo from '../assets/kubra_kai-02.png'
 

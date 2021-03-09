@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import CpuUsage from './cpuUsage.jsx'
-import MetricsContainer from './metricsContainer.jsx'
+import CpuUsage from '../components/cpuUsage.jsx'
+import MetricsContainer from '../components/metricsContainer.jsx'
 
-import PodDetail from '../containers/PodDetail';
+import PodDetail from './PodDetail';
 
 export default function Account(props) {
     return(
