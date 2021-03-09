@@ -52,6 +52,8 @@
  },
  "dependencies": {
   "@apollo/client": "^3.3.11",
+  "@emotion/core": "10.0.9",
+  "@emotion/styled": "10.0.9",
   "@fortawesome/fontawesome-svg-core": "^1.2.34",
   "@fortawesome/free-brands-svg-icons": "^5.15.2",
   "@fortawesome/free-regular-svg-icons": "^5.15.2",
@@ -63,6 +65,7 @@
   "apollo-server": "^2.21.0",
   "axios": "^0.21.1",
   "body-parser": "^1.19.0",
+  "chart.js": "^2.9.4",
   "cors": "^2.8.5",
   "express": "^4.17.1",
   "express-graphql": "^0.12.0",
@@ -72,8 +75,10 @@
   "mongoose": "^5.11.18",
   "mongoose-float": "^1.0.4",
   "pg": "^8.5.1",
-  "react": "^17.0.1",
-  "react-dom": "^17.0.1",
+  "react": "^16.8.5",
+  "react-beautiful-dnd": "13.0.0",
+  "react-chartjs-2": "^2.11.1",
+  "react-dom": "^16.8.5",
   "react-router": "^5.2.0",
   "react-router-dom": "^5.2.0"
  }
