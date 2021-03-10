@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Pie, Doughnut} from 'react-chartjs-2';
+import Container from '@material-ui/core/Container';
+
 
 export default function CpuUsage(props) {
     const [cpuUsed, setCpuUsed] = useState(0)
@@ -31,22 +33,8 @@ export default function CpuUsage(props) {
     })
 
     return(
-      <div>
-        <Pie
-          data= {state}
-          options={{
-            title:{
-              display:true,
-              text:'CPU Usage',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            }
-          }}
-        />
-
+      
+      <Container maxWidth='md'>
         <Doughnut
           data={state}
           options={{
@@ -61,6 +49,6 @@ export default function CpuUsage(props) {
             }
           }}
         />
-      </div>
+      </Container>
     )
 }

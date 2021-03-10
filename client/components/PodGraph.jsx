@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import * as d3 from 'd3'
 import dagreD3 from 'dagre-d3'
+import Container from '@material-ui/core/Container';
+
 //pods
 
 class PodGraph extends Component{
@@ -116,12 +118,14 @@ class PodGraph extends Component{
 
   render(){
     return(
-      <div>
-        <h1>Deployment</h1>
-        <svg width="400" height="200">
+      <Container>
+         <svg width="400" height="200">
           <g />
         </svg>
-      </div>
+      </Container>
+
+      
+       
   )};   
 }
 

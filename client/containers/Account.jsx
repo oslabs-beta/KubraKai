@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
 import CpuUsage from '../components/cpuUsage.jsx'
 import MetricsContainer from '../components/metricsContainer.jsx'
+import Container from '@material-ui/core/Container';
+import styled from "@emotion/styled";
 
 import PodDetail from './PodDetail';
+import NavBar from '../components/NavBar'
+
 
 export default function Account(props) {
-    return(
-      <div>
-      <h2>Welcome, you have made it to your account</h2>
+  const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap; // <---- added
+`;
 
-      <PodDetail />
+  return(
+    <div>
+      
+      <NavBar />
+      <MetricsContainer />
       <CpuUsage />
-            <MetricsContainer />
-
-      </div>
-       
-    )
+      <CpuUsage />
+      
+    </div>
+      
+  )
 }
