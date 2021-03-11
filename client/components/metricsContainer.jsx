@@ -1,26 +1,14 @@
-import CpuUsage from '../components/cpuUsage.jsx'
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-import LineChart from '../components/LineGraph.jsx';
-/*
-<GenericLineGraph 
-  data ={data}
-  type ={http-data}
-/>
-  
-ne
-
-
-*/
-
-
+import CpuUsage from './CpuUsage.jsx';
+import CpuUsed from './cpuUsed.jsx';
+import NetworkTransmit from './NetworkTransm'
 
 //create an array of components
 //[cpuUsage, pod chart, other shit, another chart]
-const componentArray = [<CpuUsage />,<CpuUsage />, <LineChart />]
+const componentArray = [<CpuUsed />, <CpuUsage />, <NetworkTransmit />]
 const numberOfComponents = componentArray.length;
 // fake data generator
 const getItems = count =>
@@ -44,7 +32,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: 'none',
   padding: 2*grid,
-  height: 500,
+  height: 400,
   width: 700,
   margin: `8px ${grid}px 8px 8px`,
 
