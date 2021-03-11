@@ -77,9 +77,8 @@ class PodGraph extends Component{
         labelStyle: "font: 300 14px 'Helvetica Neue', Helvetica;fill: white;",
       });
       
-      for(let i =0; i< children.length; i++){
-        g.setNode(children[i].toLowerCase(), {
-          label: children[i].substr(children[i].length-5),
+      for(let i =0; i< children.length; // .then(data => data["data"]["result"])
+      // .then(data => console.log(data))dren[i].length-5),
           width: 50,
           height: 20,
           shape: 'circle',

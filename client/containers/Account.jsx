@@ -9,19 +9,14 @@ import NavBar from '../components/NavBar'
 
 
 export default function Account(props) {
-  const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap; // <---- added
-`;
-
+  
   return(
-    <div>
-      
+    <div>      
       <NavBar />
       <MetricsContainer />
+      <div><PodDetail /></div>
       <CpuUsage />
-      <CpuUsage />
-      
+      <CpuUsage />      
     </div>
       
   )
