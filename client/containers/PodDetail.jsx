@@ -6,7 +6,7 @@ import PodGraph from '../components/PodGraph';
 
 function PodDetail(props){
   return(
-  <PodGraph/>
+  <PodGraph />
   )
 }
 

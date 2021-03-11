@@ -1,17 +1,20 @@
-import CpuUsage from '../components/cpuUsage.jsx'
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+import CpuUsage from './CpuUsage.jsx';
+import CpuUsed from './cpuUsed.jsx';
+import NetworkTransmit from './NetworkTransm'
+
 //create an array of components
 //[cpuUsage, pod chart, other shit, another chart]
-
+const componentArray = [<CpuUsed />, <CpuUsage />, <NetworkTransmit />]
+const numberOfComponents = componentArray.length;
 // fake data generator
 const getItems = count =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
     id: `item-${k}`,
-    content: <CpuUsage />,
+    content: componentArray[k],
   }));
 
 // a little function to help us with reordering the result
@@ -29,6 +32,8 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: 'none',
   padding: 2*grid,
+  height: 400,
+  width: 700,
   margin: `8px ${grid}px 8px 8px`,
 
   // change background colour if dragging
@@ -50,7 +55,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: getItems(6),
+      items: getItems(numberOfComponents),
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
