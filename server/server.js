@@ -43,7 +43,7 @@ const prisma = new PrismaClient;
 //   id => fakeDbContent.find(user => user.id === id)
 // )
 
-app.set('view-engine','ejs')
+// app.set('view-engine','ejs')
 
 app.use(bodyParser.json());
 app.use('*', cors());
@@ -60,9 +60,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/build', express.static(path.resolve(__dirname, '../build')));
+app.use('/client', express.static(path.resolve(__dirname, "../client"))); 
 // app.use(flash());
 app.use(session({
   secret: 'super secret',
+  expires: 1000000,
   resave:false,
   saveUninitialized:false,
   })

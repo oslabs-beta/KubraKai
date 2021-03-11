@@ -1,66 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import {Pie, Doughnut} from 'react-chartjs-2';
+import Container from '@material-ui/core/Container';
+// import "./styles.css"; 
 
-export default function CpuUsage(props) {
-    const [cpuUsed, setCpuUsed] = useState(0)
+import { Line } from "react-chartjs-2";
 
-    const state = {
-        labels: ['% of CPU used', '% of CPU free'],
-        datasets: [
-          {
-            label: 'USAGE',
-            backgroundColor: [
-              '#B21F00',
-              'green'
-            ],
-            hoverBackgroundColor: [
-            '#501800',
-            '#4B5000'
-            ],
-            data: [cpuUsed, 100-cpuUsed]
-          }
-        ]
-    }
+/**
+ * Authors: Jordan Kind, Anthony Martinez
+ * @param {*} props 
+ * 
+ * TODO: pass endpoint and label as props 
+ * 
+ */
+export default function CpuUsage(props){
 
-    useEffect(() => {
-        fetch('http://104.200.26.218:8080/api/v1/query?query= sum (rate (container_cpu_usage_seconds_total{id="/"}[1m])) / sum (machine_cpu_cores) * 100')
-        .then(data => data.json())
-        .then(data => setCpuUsed(data["data"]["result"][0]["value"][1]))
-        // .then(data => data["data"]["result"])
-        // .then(data => console.log(data))
-    })
+  const [cpuUsage, setCpuUsage] = useState([]);
+  const endpoint = `http://104.200.26.218:8080/api/v1/query_range?query=sum(rate(container_cpu_usage_seconds_total{id=%22/%22}[1m]))/sum((machine_cpu_cores)*100)&start=2021-03-10T19:12:52.00Z&end=2021-03-10T20:12:52.00Z&step=1m`
 
-    return(
-      <div>
-        <Pie
-          data= {state}
-          options={{
-            title:{
-              display:true,
-              text:'CPU Usage',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            }
-          }}
-        />
+  useEffect(() => {
+    parseData();
+  }, []);
 
-        <Doughnut
-          data={state}
-          options={{
-            title:{
-              display:true,
-              text:'CPU Usage',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            }
-          }}
-        />
-      </div>
-    )
+  function parseData(){
+    fetch(endpoint)
+      .then(data => data.json())
+      .then(result =>{        
+        setCpuUsage(result.data.result[0].values);
+      })    
+  }
+  
+  const data = {
+    labels: Array.from(Array(60).keys()),    
+    datasets: [
+      {
+        label: "CPU Usage", //append time range
+        data: cpuUsage.map(x => x[1]),
+        fill: true,
+        backgroundColor: "rgba(75,192,192,0.3)",
+        borderColor: "rgba(75,192,192,1)"
+      }
+    ]
+  };
+  
+  return(    
+    <Container maxWidth='md'>
+      <Line data={data} />      
+    </Container>
+  )
 }
+

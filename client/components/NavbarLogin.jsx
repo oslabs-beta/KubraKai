@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
                                           color="green">Create Account</Link></Button>
                             </Toolbar>
                         </AppBar>
-                        <h1>Kubra Kai</h1>m,
+                        <h1>Kubra Kai</h1>
                         <h2>The badass kubernetes monitoring tool</h2>
                         <img src={Logo}></img>
                         <h3>Kubra Kai is a free tool that we will explain what this tool does here and we can continue on to talk about the importance of it and I am just typing an trying to add words to make this seem longer like it is a chunk of text but it is late and I don't feel like coming up with a good writeup for this yet.</h3>

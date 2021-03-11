@@ -50,8 +50,6 @@ export default function Signup(){
   const [signup] = useMutation(CREATE_USER);
  
   const createNewUser = () => {
-    console.log('nigdd');
-    // e.prevent.default();
     signup({ 
       variables: { 
       firstname: firstName, 
