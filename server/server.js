@@ -11,9 +11,9 @@ const resolvers = require('./resolvers/resolvers')
 const bodyParser = require('body-parser')
 const app = express();
 const bcrypt = require('bcrypt')
-const initializePassport = require('../passport-config');
-const flash = require('express-flash');
-const passport = require('passport');
+// const initializePassport = require('../passport-config');
+// const flash = require('express-flash');
+// const passport = require('passport');
 const session = require('express-session')
 const methodOverride = require('method-override')
 const { PrismaClient } = require('@prisma/client')
@@ -37,30 +37,30 @@ const prisma = new PrismaClient;
 //     }
 //   })
 // });  
-initializePassport(
-  passport,
-  email => fakeDbContent.find(user => user.email === email),
-  id => fakeDbContent.find(user => user.id === id)
-)
+// initializePassport(
+//   passport,
+//   email => fakeDbContent.find(user => user.email === email),
+//   id => fakeDbContent.find(user => user.id === id)
+// )
 
 app.set('view-engine','ejs')
 
 app.use(bodyParser.json());
 app.use('*', cors());
-const fakeDbContent = [
-  // {
-  //      id: '1615333456941',
-  //      name: 'have you signed in yet?',
-  //      email: 'danny@danny',
-  //     password: '$2b$10$pytqCljQESdRtgJ4hZocNecaAmRUG/C0H2rsDjFZrUd79X.3tv88G'//danny
-  //   },
-  ]
-//Jordan added this
+// const fakeDbContent = [
+//   // {
+//   //      id: '1615333456941',
+//   //      name: 'have you signed in yet?',
+//   //      email: 'danny@danny',
+//   //     password: '$2b$10$pytqCljQESdRtgJ4hZocNecaAmRUG/C0H2rsDjFZrUd79X.3tv88G'//danny
+//   //   },
+//   ]
+// //Jordan added this
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/build', express.static(path.resolve(__dirname, '../build')));
-app.use(flash());
+// app.use(flash());
 app.use(session({
   secret: 'super secret',
   resave:false,
@@ -68,10 +68,10 @@ app.use(session({
   })
   );
 //intializes passport for all requests
-app.use(passport.initialize())
+// app.use(passport.initialize())
 
-app.use(passport.session())
-app.use(methodOverride('_method'))
+// app.use(passport.session())
+// app.use(methodOverride('_method'))
 
 
 
@@ -85,33 +85,33 @@ app.get("/",
   res.sendFile(path.resolve(__dirname, "../index.html"));
 });
 
-app.get('/login',checkNotAuthenticated, (req,res)=>{
-  res.render('login.ejs')
-})
-app.post('/login',checkNotAuthenticated, passport.authenticate('local',{
-  successRedirect:'/',// successful redirect sends here!!!
-  failureRedirect:'/login',
-  failureFlash: true
-}))
-app.get('/register',checkNotAuthenticated, (req,res)=>{
-  res.render('register.ejs')
-})
-app.post('/register', checkNotAuthenticated, async (req,res)=>{
- try{
- const hashPassword = await bcrypt.hash(req.body.password, 10)
- fakeDbContent.push({
-   id: Date.now().toString(),
-   name:req.body.name,
-   email: req.body.email,
-   password:hashPassword
- })
- res.redirect('/login') 
- } catch {
-   console.log('catch') 
-res.redirect('/register')
- } 
- console.log(fakeDbContent)
-})
+// app.get('/login',checkNotAuthenticated, (req,res)=>{
+//   res.render('login.ejs')
+// })
+// app.post('/login',checkNotAuthenticated, passport.authenticate('local',{
+//   successRedirect:'/',// successful redirect sends here!!!
+//   failureRedirect:'/login',
+//   failureFlash: true
+// }))
+// app.get('/register',checkNotAuthenticated, (req,res)=>{
+//   res.render('register.ejs')
+// })
+// app.post('/register', checkNotAuthenticated, async (req,res)=>{
+//  try{
+//  const hashPassword = await bcrypt.hash(req.body.password, 10)
+//  fakeDbContent.push({
+//    id: Date.now().toString(),
+//    name:req.body.name,
+//    email: req.body.email,
+//    password:hashPassword
+//  })
+//  res.redirect('/login') 
+//  } catch {
+//    console.log('catch') 
+// res.redirect('/register')
+//  } 
+//  console.log(fakeDbContent)
+// })
 
 const server = new ApolloServer({ 
   introspection: true, 
@@ -121,25 +121,25 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app });
 
-app.delete('/logout', (req, res) => {
-  req.logOut()
-  console.log('logged out now....')
-  res.redirect('/login')
-})
+// app.delete('/logout', (req, res) => {
+//   req.logOut()
+//   console.log('logged out now....')
+//   res.redirect('/login')
+// })
 
-function checkAuthenticated(req,res,next){
-  if (req.isAuthenticated()){
-    return next()
-  }
- res.redirect('/login')
-}
+// function checkAuthenticated(req,res,next){
+//   if (req.isAuthenticated()){
+//     return next()
+//   }
+//  res.redirect('/login')
+// }
 
-function checkNotAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { //passport feature
-    return res.redirect('/')
-  }
-  next()
-}
+// function checkNotAuthenticated(req, res, next) {
+//   if (req.isAuthenticated()) { //passport feature
+//     return res.redirect('/')
+//   }
+//   next()
+// }
 
 
 app.listen({ port: 4000 }, () =>
