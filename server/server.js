@@ -24,6 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/build', express.static(path.resolve(__dirname, '../build')));
+app.use('/client', express.static(path.resolve(__dirname, '../client')));
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "../index.html"));
 });

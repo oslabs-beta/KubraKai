@@ -1,169 +1,111 @@
-import React, { useState } from 'react';
-import styled from "@emotion/styled";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-// const initial = Array.from({ length: 10 }, (v, k) => k).map(k => {
-//     const custom = {
-//       id: `id-${k}`,
-//       content: `Quote ${k}`
-//     };
-//     return custom;
-// });
-//   const grid = 8;
+import CpuUsage from './CpuUsage.jsx';
+import CpuUsed from './cpuUsed.jsx';
+import NetworkTransmit from './NetworkTransm'
 
-//   const reorder = (list, startIndex, endIndex) => {
-//     const result = Array.from(list);
-//     const [removed] = result.splice(startIndex, 1);
-//     result.splice(endIndex, 0, removed);
-  
-//     return result;
-//   };
-  
-//   const MetricItem = styled.div`
-//     width: 400px;
-//     height: 200px;
-//     border: 1px solid grey;
-//     margin-bottom: ${grid}px;
-//     background-color: lightblue;
-//     padding: ${grid}px;
-//   `;
-  
-//   function Metric({ metric, index }) {
-//     return (
-//       <Draggable draggableId={metric.id} index={index}>
-//         {provided => (
-//           <MetricItem
-//             ref={provided.innerRef}
-//             {...provided.draggableProps}
-//             {...provided.dragHandleProps}
-//           >
-//             {metrics.content}
-//           </MetricItem>
-//         )}
-//       </Draggable>
-//     );
-//   }
-  
-//   const MetricList = React.memo(function MetricList({ metrics }) {
-//     return metrics.map((metric, index) => (
-//       <Metric metric={metric} index={index} key={metric.id} />
-//     ));
-//   });
-// //   const MetricList = []
-// //   for(let i = 0; i < metricsArray.length; i++){
+//create an array of components
+//[cpuUsage, pod chart, other shit, another chart]
+const componentArray = [<CpuUsed />, <CpuUsage />, <NetworkTransmit />]
+const numberOfComponents = componentArray.length;
+// fake data generator
+const getItems = count =>
+  Array.from({ length: count }, (v, k) => k).map(k => ({
+    id: `item-${k}`,
+    content: componentArray[k],
+  }));
 
-// //   }
-  
-//   export default function MetricsContainer() {
-//     const [state, setState] = useState({ metrics: initial });
-  
-//     function onDragEnd(result) {
-//       if (!result.destination) {
-//         return;
-//       }
-  
-//       if (result.destination.index === result.source.index) {
-//         return;
-//       }
-  
-//       const metrics = reorder(
-//         state.metrics,
-//         result.source.index,
-//         result.destination.index
-//       );
-  
-//       setState({ metrics });
-//     }
-  
-//     return (
-//       <DragDropContext onDragEnd={onDragEnd}>
-//         <Droppable droppableId="list">
-//           {provided => (
-//             <div ref={provided.innerRef} {...provided.droppableProps}>
-//               <MetricList metrics={state.metrics} />
-//               {provided.placeholder}
-//             </div>
-//           )}
-//         </Droppable>
-//       </DragDropContext>
-//     );
-//   }
+// a little function to help us with reordering the result
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
 
-const initial = Array.from({ length: 10 }, (v, k) => k).map(k => {
-    const metric = {
-      id: `id-${k}`,
-      content: `Metric ${k}`
+  return result;
+};
+
+const grid = 8;
+
+const getItemStyle = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: 'none',
+  padding: 2*grid,
+  height: 400,
+  width: 700,
+  margin: `8px ${grid}px 8px 8px`,
+
+  // change background colour if dragging
+  background: isDragging ? 'lightgreen' : 'white',
+
+  // styles we need to apply on draggables
+  ...draggableStyle,
+});
+
+const getListStyle = isDraggingOver => ({
+  background: isDraggingOver ? 'lightblue' : 'lightgrey',
+  display: 'flex',
+  padding: grid,
+  overflow: 'auto',
+  flexWrap: 'wrap'
+});
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: getItems(numberOfComponents),
     };
-  
-    return metric;
-  });
-  
-  const grid = 8;
-  const reorder = (list, startIndex, endIndex) => {
-    const result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-  
-    return result;
-  };
-  
-  const QuoteItem = styled.div`
-    width: 200px;
-    border: 1px solid grey;
-    margin-bottom: ${grid}px;
-    background-color: lightblue;
-    padding: ${grid}px;
-  `;
-  
-  function Quote({ quote, index }) {
-    return (
-      <Draggable draggableId={quote.id} index={index}>
-        {provided => (
-          <QuoteItem
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-          >
-            {quote.content}
-          </QuoteItem>
-        )}
-      </Draggable>
-    );
+    this.onDragEnd = this.onDragEnd.bind(this);
   }
-  
-  const QuoteList = React.memo(function QuoteList({ quotes }) {
-    return quotes.map((quote, index) => (
-      <Quote quote={quote} index={index} key={quote.id} />
-    ));
-  });
-  
-  export default function MetricsContainer() {
-    const [state, setState] = useState({ quotes: initial });
-  
-    function onDragEnd(result) {
-      if (!result.destination) {
-        return;
-      }
-  
-      if (result.destination.index === result.source.index) {
-        return;
-      }
-  
-      const quotes = reorder(
-        state.quotes,
-        result.source.index,
-        result.destination.index
-      );
-  
-      setState({ quotes });
+
+  onDragEnd(result) {
+    // dropped outside the list
+    if (!result.destination) {
+      return;
     }
-  
+
+    const items = reorder(
+      this.state.items,
+      result.source.index,
+      result.destination.index
+    );
+
+    this.setState({
+      items,
+    });
+  }
+
+  // Normally you would want to split things out into separate components.
+  // But in this example everything is just done in one place for simplicity
+  render() {
     return (
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="list">
-          {provided => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
-              <QuoteList quotes={state.quotes} />
+      <DragDropContext onDragEnd={this.onDragEnd}>
+        <Droppable droppableId="droppable" direction="horizontal">
+          {(provided, snapshot) => (
+            <div
+              ref={provided.innerRef}
+              style={getListStyle(snapshot.isDraggingOver)}
+              {...provided.droppableProps}
+            >
+              {this.state.items.map((item, index) => (
+                <Draggable key={item.id} draggableId={item.id} index={index}>
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      style={getItemStyle(
+                        snapshot.isDragging,
+                        provided.draggableProps.style
+                      )}
+                    >
+                      {item.content}
+                    </div>
+                  )}
+                </Draggable>
+              ))}
               {provided.placeholder}
             </div>
           )}
@@ -171,3 +113,7 @@ const initial = Array.from({ length: 10 }, (v, k) => k).map(k => {
       </DragDropContext>
     );
   }
+}
+
+// Put the thing into the DOM!
+export default App;
