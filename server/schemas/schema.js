@@ -7,19 +7,20 @@ const typeDefs = gql`
     email: String!
     pwd: String!
   }
-  type UserMetrics {
-      CPU_Usage: Int
-      Mem_Usage: Int
-      Bandwith: Int
-  }
   type Query {
     allUsers: [User!]!
-    getMetrics: [UserMetrics!]!
+    currentUser: User
   }
   type Mutation {
-      createUser(firstname: String, lastname: String, email: String, pwd: String): User!
-      login(email: String): User
-      createMetric(CPU_Usage: Int, Mem_Usage: Int, Bandwith: Int): UserMetrics 
+    signup(firstname: String!, lastname: String!, email: String!, pwd: String!): User!
+    login(email: String!, pwd: String!): User!
+    userInfo(email: String!, ip: String!, dpname: String!): UserInfo
+    logout: Boolean
+  }
+  type UserInfo {
+    email: String!
+    ip: String!
+    dpname: String!
   }
 `;
 module.exports = typeDefs;

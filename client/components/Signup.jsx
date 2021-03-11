@@ -4,30 +4,19 @@ import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button'; 
 import Account from '../containers/Account.jsx'
-import { gql, useMutation, useQuery } from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
 
 /*POTENTIAL USER CREATION */
-// const CREATE_USER = gql`
-//   mutation createUser($type: User) {
-//     createUser(firstname: String, lastname: String, email: String, pwd: String) {
-//       firstname
-//       lastname
-//       email
-//       pwd
-//     }
-//   }
-// `;
-const GET_USERS = gql`
-  query getUsers {
-    allUsers {
-        firstname
-        lastname
-        email
-        pwd
+const CREATE_USER = gql`
+  mutation signup($firstname: String!, $lastname: String!, $email: String!, $pwd: String!) {
+    signup(firstname: $firstname, lastname: $lastname, email: $email, pwd: $pwd) {
+      firstname
+      lastname
+      email
+      pwd
     }
-  }`
-
-
+  }
+`;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -58,22 +47,19 @@ export default function Signup(){
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const classes = useStyles();
-  // const [createUser, { data }] = useMutation(CREATE_USER);
-  const {loading, error, data } = useQuery(GET_USERS); 
+  const [signup] = useMutation(CREATE_USER);
  
-  //TO BE CHANGED INTO EVENT HANDLER//
-  useEffect(() => {
-    console.log('data ->>>', data);
-  },[data])
-
-  // const createNewUser = () => {
-  //   console.log(firstName)
-  //   return createUser({ variables: { firstName, lastName, email, password }})
-  // }
-
-  // const getAllUsers = () => {
-  //   console.log(data);
-  // }
+  const createNewUser = () => {
+    signup({ 
+      variables: { 
+      firstname: firstName, 
+      lastname: lastName,
+      email: email, 
+      pwd: password
+    }})
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
+  }
 
   return(
       <Router>
@@ -101,9 +87,8 @@ export default function Signup(){
                             className = {classes.textField}
                             onChange={event => setPassword(event.target.value)} 
                             variant="outlined" />
-                    <Button><Link to="/account"
-                          onClick={() => {}}
-                            >SIGN UP</Link></Button>
+                    <Button onClick={() => {createNewUser()}}>
+                            SIGN UP</Button>
                   </Route>
                   <Route path="/account">
                     <Account />

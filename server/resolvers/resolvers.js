@@ -1,39 +1,64 @@
 const { PrismaClient, Prisma } = require('@prisma/client');
 const path = require('path')
-const Metrics  = require('../schemas/metricsModel.js');
-const mongoose = require('mongoose');
+const bcrypt = require('bcrypt')
 
 const prisma = new PrismaClient();
 
 module.exports = {
 	Query: {
-		allUsers: (parent, args) => {
-			console.log('here')
- 		  return prisma.users.findMany();
+		allUsers: async (parent, args) => {
+ 		  return await prisma.users.findMany();
 	}, 
-		getMetrics: (parent, args) => {
-			return Metrics.findMany();
-		}
+		currentUser: async (parent, args, context) => context.user
 },
 	Mutation: {
-		createUser: (parent,args) => {
-		const { firstname, lastname, email, pwd } = args
-		console.log(firstname); 
- 			return prisma.users.create({ 
-			data: {
-  	 		firstname: firstname,
-  	 		lastname: lastname,
-  	 		email: email,
-  	 		pwd: pwd
+		signup: async (parent, args, context) => {
+			const { firstname, lastname, email, pwd} = args;
+			console.log('firstname', firstname)
+			console.log('signing up')
+			const hashedPwd = await bcrypt.hash(pwd, 10)
+			const oldUser = await prisma.users.findUnique({
+			  where: {email}
+		  });       
+		  if (oldUser) { throw new Error('User with email already exists'); }
+			const user = await prisma.users.create({
+			  data: {
+				firstname,
+				lastname,
+				email,
+				pwd: hashedPwd,
+			  }
+			})
+			console.log('user', user);
+			// await context.login(user);
+			return user;
+		  },
+		  login: async (parent, args, context) => {
+			console.log("logging in");
+			const {email, pwd } = args;
+			const user  = await prisma.users.findUnique({
+				where: {
+					email
 				}
 			})
-		},
-		login: () => {
-			prisma.users.create()
-		},
-    createMetric: (parent, arg) => {
-      const { UserID, CPU_Usage, Memory_Usage, Memory_Allocation } = args
-
-    }
+			
+			const ifTrue =  await bcrypt.compare(pwd, user.pwd)
+			console.log(ifTrue); 
+			if (ifTrue === true) return user;
+		  },
+		  userInfo: async (parent, args) => {
+			const { email, ip, dpname } = args; 
+			const userInfo = await prisma.usersinfo.create({ 
+			  data: {
+				email,
+				ip,
+				dpname
+			  }
+				  })
+			return userInfo; 
+		  },
+		  logout: (parent, args, context) => {
+			context.logout();
+		  }
 	}
 };

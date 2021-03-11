@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField'; 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import Account from '../containers/Account.jsx'
 import Signup from './Signup.jsx'
 import Logo from '../assets/kubra_kai-02.png'
+import { gql, useMutation } from '@apollo/client'; 
 
+const LOGIN = gql`
+  mutation login($email: String!, $pwd: String!) {
+    login(email: $email, pwd: $pwd) {
+      firstname
+    }
+  }`;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,15 +40,32 @@ const useStyles = makeStyles((theme) => ({
       const classes = useStyles();
       const [email, setEmail] = useState('');
       const [password, setPassword] = useState(''); 
-      function loginFunc(e) {
-        setEmail(e.target.value)
-        setPassword(e.target.value)
-        const loginInfo = {
-          'email': email,
-          'password': password
-        }
-        console.log('loginInfo:', loginInfo)
-      }
+      const [auth, setAuth] = useState(false);
+      const [login] =  useMutation(LOGIN);
+
+      const loginFunc = async () => {
+       const user = await login({
+         variables: {
+           email,
+           pwd: password
+         }
+       })
+       .then(data => {
+         console.log(data)
+         if(data) setAuth(true); 
+       })
+      };
+      if (auth === true) return (
+      <Router>
+        <Route>
+          <Redirect to='/account'>
+            </Redirect>
+            <Route path="/account">
+           <Account />
+            </Route>
+            </Route>
+           </Router>
+           )
       return (
         <Router>
             <div className={classes.root}>
@@ -53,14 +77,15 @@ const useStyles = makeStyles((theme) => ({
                             <form className={classes.root} noValidate autoComplete="off">
                                 <TextField id="standard-basic" 
                                            label="Email" 
-                                           style={{ color: "white" }} />
+                                           style={{ color: "white" }}
+                                           onChange={(e) => setEmail(e.target.value)} />
                                 <TextField id="standard-basic" 
                                            label="Password" 
-                                           style={{ color: "white" }} />
+                                           style={{ color: "white" }}
+                                           onChange={(e) => setPassword(e.target.value)} />
                             </form>
-                            <Button><Link to="/account" 
-                                          color="inherit" 
-                                          onClick={loginFunc}>Login</Link></Button>
+                                   <Button color="inherit" 
+                                          onClick={() => loginFunc()}>Login</Button>
                             <Button><Link to="/signup" 
                                           color="green">Create Account</Link></Button>
                             </Toolbar>

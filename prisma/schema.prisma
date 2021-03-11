@@ -8,8 +8,16 @@ datasource db {
 }
 
 model users {
-  firstname String @db.VarChar
-  lastname  String @db.VarChar
-  email     String @id @db.VarChar
-  pwd       String @db.VarChar
+  firstname String     @db.VarChar
+  lastname  String     @db.VarChar
+  email     String     @id @db.VarChar
+  pwd       String     @db.VarChar
+  usersinfo usersinfo?
+}
+
+model usersinfo {
+  email  String @id @db.VarChar
+  ip     String @db.VarChar
+  dpname String @db.VarChar
+  users  users  @relation(fields: [email], references: [email])
 }
