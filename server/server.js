@@ -10,7 +10,7 @@ const typeDefs = require('./schemas/schema');
 const resolvers = require('./resolvers/resolvers')
 const bodyParser = require('body-parser')
 const app = express();
-const bcrypt = require('bcrypt')
+// const bcrypt = require('bcrypt')
 // const initializePassport = require('../passport-config');
 // const flash = require('express-flash');
 // const passport = require('passport');
@@ -20,7 +20,7 @@ const { PrismaClient } = require('@prisma/client')
 // const redis = require("redis");
 // const redisStore = require('connect-redis')(session);
 // const redisClient = redis.createClient();
-const prisma = new PrismaClient;
+// const prisma = new PrismaClient;
 
 
 // initializePassport(

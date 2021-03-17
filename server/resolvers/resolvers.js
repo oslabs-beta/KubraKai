@@ -16,7 +16,8 @@ module.exports = {
 			const { firstname, lastname, email, pwd} = args;
 			console.log('firstname', firstname)
 			console.log('signing up')
-			const hashedPwd = await bcrypt.hash(pwd, 10)
+			const saltRounds = 10 
+			const hashedPwd = await bcrypt.hash(pwd, saltRounds);
 			const oldUser = await prisma.users.findUnique({
 			  where: {email}
 		  });       
