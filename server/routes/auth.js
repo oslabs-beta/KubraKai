@@ -20,11 +20,40 @@ router.get('/login', (req,res)=>{
   res.render('login.ejs')
 });
 
-router.post('/login', passport.authenticate('local', 
-  {  successRedirect:'/',// successful redirect sends here!!!
-    failureRedirect:'/auth/register',
-    failureFlash: true
-  }
-));
+// router.post('/login', passport.authenticate('local'), 
+//   // {  
+//   //   successRedirect:'../rome.html',// successful redirect sends here!!!
+//   //   failureRedirect:'/auth/register',
+//   //   failureFlash: true
+//   // }, 
+//   (req,res)=>{
+//     console.log('after pass.auth', req.user)
+//     return res.redirect('/profile/')
+//     // res.sendFile(path.resolve(__dirname, "../../index.html"));
+
+//   }
+// );
+
+router.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/login'); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.redirect('/profile/' + user.email);
+    });
+  })(req, res, next);
+});
 
 module.exports = router;
+
+
+
+// router.get('/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));
+
+// router.get('/facebook/callback',
+//     passport.authenticate('facebook', { failureRedirect: "/" }), function (req, res) {
+//         if (req.user || req.session.user)
+//             return res.redirect('/' + req.user._id || req.session.user._id);
+//         return res.redirect('/login');
+//     });

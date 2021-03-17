@@ -2,6 +2,7 @@
 const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 const passport = require('passport');
+const path = require('path')
 
 //require db
 const db = require('./model/userModel');
@@ -50,8 +51,9 @@ passport.deserializeUser((email, done) => {
     //if user doesn't exist -> return done(null, false)
     db.query(queryStr,[email])
       .then(user =>{
-        console.log('at getUserByEmail', user.rows[0].email)
-        done(user.rows[0].email);
+        // console.log('at getUserByEmail', user.rows[0].email)
+        // res.locals.email = user.rows[0].email
+        done(null, user.rows[0].email);
       })
       .catch(error =>{
         console.log('at getUserByEmail error: ', error)

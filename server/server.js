@@ -3,33 +3,27 @@ if(process.env.NODE_ENV !== 'production'){
 }
 
 const express = require('express');
-const path = require('path')
-const bodyParser = require('body-parser');
 const cors = require('cors');
-const app = express();
-
-
-
 const flash = require('express-flash');
-
+const path = require('path')
+const authRouter = require('./routes/auth')
+const profileRouter = require('./routes/profile')
 const passport = require('passport');
 const session = require('express-session')
 const methodOverride = require('method-override')
+const bodyParser = require('body-parser');
 
-const authRouter = require('./routes/auth')
-
+const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.set('view-engine','ejs')
 app.use(bodyParser.json());
 app.use('*', cors());
-app.use(methodOverride('_method'))
-
+// app.use(methodOverride('_method'))
 
 app.use('/build', express.static(path.resolve(__dirname, '../build')));
 app.use(flash());
-
 
 require('../passport');
 app.use(session({
@@ -39,16 +33,19 @@ app.use(session({
   })
 );
 //intializes passport for all requests
-
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/auth', authRouter);
+//Router
+app.use('/auth', (req,res, next)=>{
+  console.log('hello before authRouter')
+  next()
+}, authRouter);
 
-
-
-
-
+app.use('/profile', (req,res, next)=>{
+  console.log('hello prof')
+  next()
+  },profileRouter);
 
 app.get("/", 
 (req, res) => {
@@ -58,56 +55,6 @@ app.get("/",
   // res.render('index.ejs',{name:req.user.name})
   res.sendFile(path.resolve(__dirname, "../index.html"));
 });
-
-
-
-// app.get('/login',
-// checkNotAuthenticated, 
-// (req,res)=>{
-//   res.render('login.ejs')
-// })
-// app.post('/login',checkNotAuthenticated, passport.authenticate('local',{
-//   successRedirect:'/',// successful redirect sends here!!!
-//   failureRedirect:'/login',
-//   failureFlash: true
-// }))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// app.delete('/logout', (req, res) => {
-//   req.logOut()
-//   console.log('logged out now....')
-//   res.redirect('/login')
-// })
-
-// //check to see if a user is authenticated
-// function checkAuthenticated(req,res,next){
-//   if (req.isAuthenticated()){
-//     return next()
-//   }
-//  res.redirect('/login')
-// }
-
-// //check to see if a user is NOT authenticated
-
-// function checkNotAuthenticated(req, res, next) {
-//   if (req.isAuthenticated()) { //passport feature
-//     return res.redirect('/')
-//   }
-//   next()
-// }
 
 
 app.listen({ port: 4000 }, () =>
