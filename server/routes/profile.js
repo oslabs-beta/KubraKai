@@ -5,7 +5,8 @@ const router = express.Router();
 router.get('/', (req,res)=>{
     console.log('-----------------------at profile / ')
     // res.send('you are logged in')
-    res.sendFile('/home/tony/Documents/codesmith/production_proj/KubraKai/index.html');
+    // res.sendFile(path.join(__dirname, '../../index.html'));
+    res.redirect('/')
 } )
 
 module.exports = router;
