@@ -40,7 +40,7 @@ router.post('/login', function(req, res, next) {
     if (!user) { return res.redirect('/login'); }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
-      return res.redirect('/profile/' + user.email);
+      return res.redirect('/profile/');
     });
   })(req, res, next);
 });
