@@ -38,11 +38,3 @@ select * from users inner join oauthUsers on email_fk = email;
 
 
 
-
-
-insert into users (firstName, lastName, email, pwd) values  ('Jessica', 'Martinez','jessica@amartinez.cc', 'temp');
-insert into users (firstName, lastName, email, pwd) values  ('Jillian', 'Martinez','jillian@amartinez.cc', 'temp');
-insert into users (firstName, lastName, email, pwd) values  ('Archer', 'Martinez','archer@amartinez.cc', 'temp');
-
-insert into credentials (_id, oauth, email_fk) values (DEFAULT, 'facebook', 'anthony@amartinez.cc');
-insert into credentials (_id, oauth, email_fk) values (DEFAULT, 'google', 'anthony@amartinez.cc');
