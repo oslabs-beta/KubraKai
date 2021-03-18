@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import * as d3 from 'd3'
 import dagreD3 from 'dagre-d3'
-
+import { context } from '../context'
 /*
 
 temp resources notes:
@@ -17,6 +17,7 @@ function PodGraph(props){
   
   const [root, setRoot] = useState('');
   const [children, setChildren] =useState('')
+  const { ip } = useContext(context)
 
   function parseData(data){
     const dataModel = {root: '', children:[]}
@@ -37,7 +38,7 @@ function PodGraph(props){
   }
 
   useEffect(() => {
-    fetch('http://104.200.26.218:8080/api/v1/query?query=kube_pod_container_info{container="archie"}')
+    fetch(`http://${ip}:8080/api/v1/query?query=kube_pod_container_info{container="archie"}`)
     .then(data => data.json())
     .then(data => {
       const dataModel = parseData(data)

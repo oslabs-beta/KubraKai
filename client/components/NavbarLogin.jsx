@@ -10,6 +10,7 @@ import Account from '../containers/Account.jsx'
 import Signup from './Signup.jsx'
 import Logo from '../assets/kubra_kai-02.png'
 import { gql, useMutation } from '@apollo/client'; 
+import { context } from '../context.js';
 
 const LOGIN = gql`
   mutation login($email: String!, $pwd: String!) {
@@ -43,6 +44,15 @@ const useStyles = makeStyles((theme) => ({
       const [auth, setAuth] = useState(false);
       const [login] =  useMutation(LOGIN);
 
+      const [ip, setIP] = useState('104.200.26.218');
+      const [ipArray, setipArray] = useState(["104.200.26.218"])
+      const state = {
+        ip,
+        setIP,
+        ipArray,
+        setipArray
+      }
+
       const loginFunc = async () => {
        const user = await login({
          variables: {
@@ -55,7 +65,9 @@ const useStyles = makeStyles((theme) => ({
          if(data) setAuth(true); 
        })
       };
+      
       if (auth === true) return (
+      <context.Provider value={state}>
       <Router>
         <Route>
           <Redirect to='/account'>
@@ -65,8 +77,10 @@ const useStyles = makeStyles((theme) => ({
             </Route>
             </Route>
            </Router>
+        </context.Provider>
            )
       return (
+        <context.Provider value={state}>
         <Router>
             <div className={classes.root}>
                 <Switch>
@@ -79,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
                                            label="Email" 
                                            style={{ color: "white" }}
                                            onChange={(e) => setEmail(e.target.value)} />
-                                <TextField id="standard-basic" 
+                                <TextField id="standard-password-input" 
                                            label="Password" 
                                            style={{ color: "white" }}
                                            onChange={(e) => setPassword(e.target.value)} />
@@ -96,14 +110,16 @@ const useStyles = makeStyles((theme) => ({
                         <h3>Kubra Kai is a free tool that we will explain what this tool does here and we can continue on to talk about the importance of it and I am just typing an trying to add words to make this seem longer like it is a chunk of text but it is late and I don't feel like coming up with a good writeup for this yet.</h3>
                     </Route>
                     <Route path="/account">
+                    <context.Provider value={state}>
                         <Account />
+                    </context.Provider>
                     </Route>
                     <Route path="/signup">
                         <Signup />
                     </Route>
                 </Switch>
             </div>
-
         </Router>
+      </context.Provider>
       );
   }

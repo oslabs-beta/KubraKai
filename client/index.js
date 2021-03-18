@@ -6,6 +6,7 @@ import NavbarLogin from './components/NavbarLogin.jsx';
 import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { context } from "./context.js"
+import {useState} from "react"
 
 
 
@@ -14,16 +15,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-const state = {
-  ip: 'null',
-}
 
 
 render(
   <ApolloProvider client={client}>
-    <context.Provider value={state}>
     <NavbarLogin />
-  </context.Provider>
   </ApolloProvider>,
  document.getElementById("mainBody")
 );

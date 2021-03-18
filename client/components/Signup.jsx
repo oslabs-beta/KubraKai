@@ -50,7 +50,7 @@ export default function Signup(){
   const classes = useStyles();
   const [auth, setAuth] = useState(false);
   const [signup] = useMutation(CREATE_USER);
-  const { ip } = useContext(context)
+  const { ip } = useContext(context);
  
   console.log(ip);
 
@@ -107,8 +107,6 @@ export default function Signup(){
                             className = {classes.textField}
                             onChange={event => setPassword(event.target.value)} 
                             variant="outlined" />
-                    <div>ip below</div>
-                    <div>{ip}</div>
                     <Button onClick={() => {createNewUser()}}>
                             SIGN UP</Button>
                   </Route>
