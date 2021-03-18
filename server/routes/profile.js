@@ -4,8 +4,6 @@ const router = express.Router();
 
 router.get('/', (req,res)=>{
     console.log('-----------------------at profile / ')
-    // res.send('you are logged in')
-    // res.sendFile(path.join(__dirname, '../../index.html'));
     res.redirect('/')
 } )
 

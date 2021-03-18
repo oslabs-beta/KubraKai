@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy
 const bcrypt = require('bcrypt')
 
 const authController = require('../controllers/authController')
@@ -20,20 +19,20 @@ router.get('/login', (req,res)=>{
   res.render('login.ejs')
 });
 
-// router.post('/login', passport.authenticate('local'), 
-//   // {  
-//   //   successRedirect:'../rome.html',// successful redirect sends here!!!
-//   //   failureRedirect:'/auth/register',
-//   //   failureFlash: true
-//   // }, 
-//   (req,res)=>{
-//     console.log('after pass.auth', req.user)
-//     return res.redirect('/profile/')
-//     // res.sendFile(path.resolve(__dirname, "../../index.html"));
+//callback route for google to redirect to
+router.get('/google/redirect', passport.authenticate('google',{ failureRedirect: '/auth/login' }),(req,res)=>{
+  res.redirect('/');
+});
 
-//   }
-// );
+//auth with google
+router.get('/google', passport.authenticate('google',{
+  scope:['profile','email']
+}));
 
+/*
+  TODO: Redirect or flash -> login error, or user email or pwd doesn't match ect..
+
+*/
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err); }
@@ -46,14 +45,3 @@ router.post('/login', function(req, res, next) {
 });
 
 module.exports = router;
-
-
-
-// router.get('/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));
-
-// router.get('/facebook/callback',
-//     passport.authenticate('facebook', { failureRedirect: "/" }), function (req, res) {
-//         if (req.user || req.session.user)
-//             return res.redirect('/' + req.user._id || req.session.user._id);
-//         return res.redirect('/login');
-//     });

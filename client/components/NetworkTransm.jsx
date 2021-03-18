@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container';
 import { Line } from "react-chartjs-2";
 
 /**
- * Authors: Jordan Kind, Anthony Martinez
+ * Authors: Jordan King, Anthony Martinez
  * @param {*} props 
  * 
  * TODO: pass endpoint and label as props 
