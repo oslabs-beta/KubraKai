@@ -24,7 +24,9 @@ app.use('/build', express.static(path.resolve(__dirname, '../build')));
 app.use(flash());
 
 /**
- * 
+ * TODO: 
+ *  -save to a session database
+ *  -set expiration
  */
 require('./passport');
 app.use(session({
@@ -39,16 +41,11 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 //Router
-app.use('/auth', checkNotAuthenticated, (req,res, next)=>{
-  console.log('hello before authRouter')
-  next()
-}, authRouter);
+app.use('/auth', checkNotAuthenticated, authRouter);
 
-app.use('/profile', (req,res, next)=>{
-  console.log('hello profile')
-  next()
-  },profileRouter);
+app.use('/profile',profileRouter);
 
+//Dashboard
 app.get("/", 
   checkAuthenticated,  
   (req, res) => {

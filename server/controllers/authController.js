@@ -18,28 +18,27 @@ userController.register = (req, res, next) =>{
 
   const saltRounds = 10
   bcrypt.hash(pwd, saltRounds)
-    .then(hashedPassword =>{
-      db.query(queryStrUser, [firstname, lastname, email])
-        .then(queryResult =>{
-          db.query(queryStrLocalUsers, [hashedPassword, email])
-            .then(hashedResult =>{
-              res.redirect('/auth/login');
-              return next();
-            })    
-            .catch(error=>{
-              console.error('error during pwd query: ', error);
-              res.redirect('/auth/register')
-            })    
-      })      
+  .then(hashedPassword =>{
+    db.query(queryStrUser, [firstname, lastname, email])
+    .then(queryResult =>{
+      db.query(queryStrLocalUsers, [hashedPassword, email])
+      .then(hashedResult =>{
+        res.redirect('/auth/login');
+        return next();
+      })    
       .catch(error=>{
-        console.log('error during signup query: ', error);
+        console.error('error during pwd query: ', error);
         res.redirect('/auth/register')
-      })
+      })    
+    })      
     .catch(error=>{
-      console.log(error);
-      return next(error)
+      console.log('error during signup query: ', error);
+      res.redirect('/auth/register')
     })
-  })                 
+  .catch(error=>{
+    console.log(error);
+    return next(error)
+  })})                 
 }
 
 module.exports = userController;

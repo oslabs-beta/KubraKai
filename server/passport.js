@@ -99,7 +99,7 @@ const verifyCallBackGoogle = (accessToken, refreshToken, profile, done) =>{
   Strategies
 */
 const localStrategy  = new LocalStrategy(customFields, verifyCallBackLocal);
-passport.use(verifyCallBackLocal)
+passport.use(localStrategy)
 
 const googleStrategy = new GoogleStrategy({
   callbackURL:'/auth/google/redirect',
