@@ -3,7 +3,13 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { context } from '../context.js'
-
+/**
+ * Authors: Jordan Kind, Anthony Martinez, Taylor Davis
+ * @param {*} 
+ * 
+ * 
+ * 
+ */
 export default function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { ip, setIP, ipArray } = useContext(context)

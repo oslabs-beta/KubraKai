@@ -5,6 +5,14 @@ import { context } from '../context.js'
 import Button from '@material-ui/core/Button'; 
 
 
+
+/* Authors: Jordan Kind, Anthony Martinez, Taylor Davis
+ * @param {*} 
+ * 
+ * TODO: Incorporate POST request to DB upon new IP Address
+ * 
+ */
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',

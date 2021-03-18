@@ -4,7 +4,12 @@ import Container from '@material-ui/core/Container';
 import { context } from '../context.js'
 import '../style.css'
 
-
+/**
+ * Authors: Jordan Kind, Anthony Martinez
+ * 
+ * 
+ * 
+ */
 export default function CpuUsage(props) {
     const [cpuUsed, setCpuUsed] = useState(0)
     const { ip } = useContext(context);

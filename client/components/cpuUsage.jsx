@@ -5,12 +5,13 @@ import { context } from '../context.js'
 import { Line } from "react-chartjs-2";
 
 /**
- * Authors: Jordan Kind, Anthony Martinez
+ * Authors: Jordan Kind, Anthony Martinez, Taylor Davis
  * @param {*} props 
  * 
- * TODO: pass endpoint and label as props 
+ * 
  * 
  */
+
 export default function CpuUsage(props){
   const { ip } = useContext(context);
   const [cpuUsage, setCpuUsage] = useState([]);
