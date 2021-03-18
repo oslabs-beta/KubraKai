@@ -15,7 +15,7 @@ const customFields = {
 };
 
 /**
- * @author Danny and Anthony Martinez
+ * @author Danny Balistocky and Anthony Martinez
  * @param {*} username 
  * @param {*} password 
  * @param {*} done 
@@ -43,7 +43,7 @@ const verifyCallBackLocal = (username, password, done) => {
 }
 
 /**
- * @author Danny and Anthony Martinez
+ * @author Danny Balistocky and Anthony Martinez
  * @param {*} accessToken 
  * @param {*} refreshToken 
  * @param {*} profile 
