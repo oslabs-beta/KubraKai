@@ -43,7 +43,7 @@ app.use(passport.session())
 //Router
 app.use('/auth', checkNotAuthenticated, authRouter);
 
-app.use('/profile', checkAuthenticated, profileRouter);
+app.use('/profile',profileRouter);
 
 //Dashboard
 app.get("/", 

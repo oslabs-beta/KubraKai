@@ -12,6 +12,8 @@ import {useState} from "react"
 
 import Account from './containers/Account'
 
+import Account from './containers/Account'
+
 const client = new ApolloClient({
   uri: 'http://localhost:8080/graphql/',
   cache: new InMemoryCache()
