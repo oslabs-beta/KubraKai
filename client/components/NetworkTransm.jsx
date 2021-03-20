@@ -5,7 +5,7 @@ import { context } from '../context.js';
 import { Line } from "react-chartjs-2";
 
 /**
- * Authors: Jordan Kind, Anthony Martinez
+ * Authors: Jordan King, Anthony Martinez
  * @param {*} props 
  * 
  * TODO: pass endpoint and label as props 
@@ -45,7 +45,7 @@ export default function NetworkTransmit(props){
   };
   
   return(    
-    <Container maxWidth='md'>
+    <Container>
       <Line data={data} />      
     </Container>
   )

@@ -36,6 +36,8 @@ export default function LayoutTextFields() {
     console.log('ipArrayPushed:', ipArray)
     setipArray(ipArray);
     //potential post fetch request here
+    const endpoint = '/auth/'; 
+    fetch(endpoint, )
   }
 
 

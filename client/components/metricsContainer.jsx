@@ -5,7 +5,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import CpuUsage from './CpuUsage.jsx';
 import CpuUsed from './cpuUsed.jsx';
 import NetworkTransmit from './NetworkTransm';
-
+import '../style.css'
 //create an array of components
 //[cpuUsage, pod chart, other shit, another chart]
 const componentArray = [<CpuUsed />, <CpuUsage />, <NetworkTransmit />]

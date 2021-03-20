@@ -5,7 +5,7 @@ import { context } from '../context.js'
 import '../style.css'
 
 /**
- * Authors: Jordan Kind, Anthony Martinez
+ * Authors: Jordan King, Anthony Martinez
  * 
  * 
  * 
@@ -43,6 +43,7 @@ export default function CpuUsage(props) {
       
       <Container maxWidth='md'>
         <Doughnut
+          classname='Chart'
           data={state}
           options={{
             title:{
