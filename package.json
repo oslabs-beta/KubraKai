@@ -79,6 +79,7 @@
   "express-graphql": "^0.12.0",
   "express-session": "^1.17.1",
   "fs": "^0.0.1-security",
+  "gatsby-cli": "^3.1.0",
   "graphql": "^15.5.0",
   "graphql-passport": "^0.6.3",
   "material-ui": "^0.20.2",

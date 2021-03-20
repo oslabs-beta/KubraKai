@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS userIp;
 DROP TABLE IF EXISTS localUsers;
 DROP TABLE IF EXISTS oauthUsers;
 DROP TABLE IF EXISTS users;
@@ -21,6 +22,14 @@ CREATE TABLE oauthUsers(
   oauth_type varchar NOT NULL,   
   email_fk varchar NOT NULL,
   FOREIGN KEY (email_fk) 
+    REFERENCES users(email)
+);
+
+CREATE TABLE userIp(
+  _id serial PRIMARY KEY, 
+  userIp varchar UNIQUE, 
+  email_fk varchar NOT NULL,
+  FOREIGN KEY (email_fk)
     REFERENCES users(email)
 );
 

@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Container from '@material-ui/core/Container';
 // import "./styles.css"; 
-
+import { context } from '../context.js'
 import { Line } from "react-chartjs-2";
 
 /**
- * Authors: Jordan Kind, Anthony Martinez
+ * Authors: Jordan Kind, Anthony Martinez, Taylor Davis
  * @param {*} props 
  * 
- * TODO: pass endpoint and label as props 
+ * 
  * 
  */
-export default function CpuUsage(props){
 
+export default function CpuUsage(props){
+  const { ip } = useContext(context);
   const [cpuUsage, setCpuUsage] = useState([]);
-  const endpoint = `http://104.200.26.218:8080/api/v1/query_range?query=sum(rate(container_cpu_usage_seconds_total{id=%22/%22}[1m]))/sum((machine_cpu_cores)*100)&start=2021-03-10T19:12:52.00Z&end=2021-03-10T20:12:52.00Z&step=1m`
+  const endpoint = `http://${ip}:8080/api/v1/query_range?query=sum(rate(container_cpu_usage_seconds_total{id=%22/%22}[1m]))/sum((machine_cpu_cores)*100)&start=2021-03-10T19:12:52.00Z&end=2021-03-10T20:12:52.00Z&step=1m`
 
   useEffect(() => {
+    console.log("endpoint", endpoint)
     parseData();
   }, []);
 
