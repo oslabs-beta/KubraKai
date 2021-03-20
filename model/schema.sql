@@ -25,6 +25,14 @@ CREATE TABLE oauthUsers(
     REFERENCES users(email)
 );
 
+CREATE TABLE userIp(
+  _id serial PRIMARY KEY, 
+  userIp varchar UNIQUE, 
+  email_fk varchar NOT NULL,
+  FOREIGN KEY (email_fk)
+    REFERENCES users(email)
+);
+
 
 insert into users (firstName, lastName, email) values ('Daniel', 'Balistocky','thestinx@gmail.com');
 insert into oauthUsers (oauth_id,oauth_type, email_fk) values ('108936834947616854132', 'google','thestinx@gmail.com');
