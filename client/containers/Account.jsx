@@ -3,24 +3,35 @@ import MetricsContainer from '../components/metricsContainer.jsx'
 import DropDown from '../components/ipDropDown'
 import Input from '../components/ipInput'
 import { context } from '../context.js';
-import { checkFetcher } from '@apollo/client';
 
 
 export default function Account(props) {  
   const [ipArray, setipArray] = useState([]);
+  const [ip, setIP] = useState();
   const getIps = () => { 
-    fetch('/profile/ip')
+    if(ipArray.length === 0) {
+      fetch('/profile/ip')
       .then(res => res.json())
       .then(res => {
-        setipArray(res.locals.ip);
-        return ipArray})
-      .catch(err => console.log(err));
-  };
-  useEffect(() => {
-    getIps();
-  })
-  
-  const [ip, setIP] = useState(ipArray[0]);
+        console.log("Arr?", res)
+        let newArr = [];
+        for (let i = 0; i < res.length; i++) {
+          let ip = res[i].userip;
+          newArr.push(ip)
+        }
+        setipArray(newArr);
+        setIP(newArr[0]);
+      })
+        .catch(err => console.log(err));
+      }
+      return;
+    };
+      
+      useEffect(() => {
+       getIps();
+      })
+
+      
   const state = {
     ip,
     setIP,

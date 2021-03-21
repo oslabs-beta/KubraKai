@@ -12,8 +12,7 @@ import { context } from '../context.js'
  */
 export default function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { ip, setIP, ipArray } = useContext(context)
-  console.log(ipArray[0]);
+  const { ip, setIP, ipArray } = useContext(context);
 
   const menuClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -34,7 +33,7 @@ export default function SimpleMenu() {
   const iPmenuItems = [];
   for(let i = 0; i < ipArray.length; i++) {
     iPmenuItems.push(  
-    <MenuItem id={i} onClick={handleClick}>{ipArray[i]}</MenuItem>)
+    <MenuItem key = {`Key${i}`} id={i} onClick={handleClick}>{ipArray[i]}</MenuItem>)
   }
 
   return (

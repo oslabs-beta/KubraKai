@@ -65,32 +65,32 @@ const verifyCallBackGoogle = (accessToken, refreshToken, profile, done) =>{
     console.log('returned value of currentUser: passport line 97:', currentUser)
     if (currentUser.rows[0]){
       //if current user has already been put in the db
-      console.log('Check if user exist', currentUser.rows[0])
+      // console.log('Check if user exist', currentUser.rows[0])
       //passes user info to serialize function
       done(null,currentUser.rows[0])
     }else{
       db.query(insertUserStr, [profile.name.givenName, profile.name.familyName, profile.emails[0].value])
       .then(newuser => {
-        console.log('new user was created! line 106', newuser);
+        // console.log('new user was created! line 106', newuser);
         //passes user info to serialize function
         db.query(insertOauthStr, [profile.id, profile.provider, profile.emails[0].value])
         .then(queryResult =>{     
-          console.log('passport line 112 ---->', queryResult.rows[0])           
+          // console.log('passport line 112 ---->', queryResult.rows[0])           
           done(null, newuser.rows[0])                
         })    
         .catch(error=>{
-          console.log('error during google insert to db 117: ', error);
+          // console.log('error during google insert to db 117: ', error);
           res.redirect('/auth/login')
         });                
       })
       .catch(e => {
-        console.log('we are in auth cb func',e)
+        // console.log('we are in auth cb func',e)
         res.redirect('/auth/login')
       });
     }  
   })
   .catch(e => {
-    console.log('we are in auth cb func',e)
+    // console.log('we are in auth cb func',e)
     res.redirect('/auth/login')
   });  
 }

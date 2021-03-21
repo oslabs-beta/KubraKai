@@ -39,7 +39,10 @@ export default function LayoutTextFields() {
     const endpoint = '/profile/ip'; 
     fetch(endpoint, {
       method: "POST", 
-      body: JSON.stringify({ip: `${newIp}`})
+      body: JSON.stringify({ip: `${newIp}`}),
+      headers: { 
+        'content-type' : 'application/json'
+      }
   })
   .then(ip => ip.json())
   .then(ip => {
