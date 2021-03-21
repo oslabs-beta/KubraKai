@@ -50,8 +50,8 @@ const verifyCallBackLocal = (username, password, done) => {
  * @param {*} done 
  */
 const verifyCallBackGoogle = (accessToken, refreshToken, profile, done) =>{
-  console.log('oauth callback function fired');
-  console.log(profile)
+  // console.log('oauth callback function fired');
+  // console.log(profile)
   // queryStr contains the query string to find a user in a specific table
   const selectStr = `select * from users where email = $1`
   // text = the query that creates a new user in db, if the queryStr hasnt f0und a user already

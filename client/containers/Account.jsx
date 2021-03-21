@@ -1,23 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MetricsContainer from '../components/metricsContainer.jsx'
 import DropDown from '../components/ipDropDown'
 import Input from '../components/ipInput'
 import { context } from '../context.js';
+import { checkFetcher } from '@apollo/client';
 
 
 export default function Account(props) {  
-  const [ip, setIP] = useState('104.200.26.218');
-  const [ipArray, setipArray] = useState(["104.200.26.218"])
+  const [ipArray, setipArray] = useState([]);
+  const getIps = () => { 
+    fetch('/profile/ip')
+      .then(res => res.json())
+      .then(res => {
+        setipArray(res.locals.ip);
+        return ipArray})
+      .catch(err => console.log(err));
+  };
+  useEffect(() => {
+    getIps();
+  })
+  
+  const [ip, setIP] = useState(ipArray[0]);
   const state = {
     ip,
     setIP,
     ipArray,
-    setipArray
+    setipArray,
   }
 
 
   return(
-    
     <div>    
       <context.Provider value = {state}>
       <DropDown />

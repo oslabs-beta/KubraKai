@@ -31,17 +31,22 @@ export default function LayoutTextFields() {
   const [newIp, setNewIp] = useState('');
 
   const onClickHandler = () => {
-    console.log('newIp:', newIp)
-    ipArray.push(`${newIp}`)
+    if (ipArray.includes(`${newIp}`)) return;
+    ipArray.push(`${newIp}`);
     console.log('ipArrayPushed:', ipArray)
     setipArray(ipArray);
     //potential post fetch request here
-    const endpoint = '/auth/'; 
+    const endpoint = '/profile/ip'; 
     fetch(endpoint, {
-        method: "POST", 
-        body: json.stringify(ipArray)
-    })
-  }
+      method: "POST", 
+      body: JSON.stringify({ip: `${newIp}`})
+  })
+  .then(ip => ip.json())
+  .then(ip => {
+      console.log(ip);
+  })
+  .catch(err => console.log(err));
+}
 
 
   return (

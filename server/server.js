@@ -43,13 +43,13 @@ app.use(passport.session())
 //Router
 app.use('/auth', checkNotAuthenticated, authRouter);
 
-app.use('/profile',profileRouter);
+app.use('/profile', checkAuthenticated, profileRouter);
 
 //Dashboard
 app.get("/", 
   checkAuthenticated,  
   (req, res) => {
-    req.session.viewCount +=1
+    req.session.viewCount +=1;
     res.sendFile(path.resolve(__dirname, "../index.html"));
 });
 
