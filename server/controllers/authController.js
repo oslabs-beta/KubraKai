@@ -10,7 +10,7 @@ const userController = {};
  * TODO: Use transaction to capture queryStrUser and queryStrLocalUser
  */
 userController.register = (req, res, next) =>{
-  const {firstname, lastname,email, pwd} = req.body
+  const {firstname, lastname, email, pwd} = req.body
   const queryStrUser = `insert into users (firstname, lastname, email) values 
                           ($1, $2, $3);`
   const queryStrLocalUsers = `insert into localUsers (_id, pwd, email_fk) values 
