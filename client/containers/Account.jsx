@@ -4,10 +4,17 @@ import DropDown from '../components/ipDropDown'
 import Input from '../components/ipInput'
 import { context } from '../context.js';
 
+/**
+ * Authors: Jordan Kind, Anthony Martinez, Taylor Davis
+ * @param {*} props 
+ * 
+ * 
+ * 
+ */
 
 export default function Account(props) {  
   const [ipArray, setipArray] = useState([]);
-  const [ip, setIP] = useState();
+  const [ip, setIP] = useState('96.126.99.36');
   const getIps = () => { 
     if(ipArray.length === 0) {
       fetch('/profile/ip')
@@ -39,9 +46,20 @@ export default function Account(props) {
     setipArray,
   }
 
+  const mystyle = {
+    color: "red", 
+    fontFamily: "Arial",
+  }
+
 
   return(
-    <div>    
+    <div 
+      style={{
+        backgroundColor: "black",
+      }
+      }>
+      <header
+      style={mystyle}>Welcome to Kubra Kai </header>    
       <context.Provider value = {state}>
       <DropDown />
       <Input/>

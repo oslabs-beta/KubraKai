@@ -6,10 +6,10 @@ import Button from '@material-ui/core/Button';
 
 
 
-/* Authors: Jordan Kind, Anthony Martinez, Taylor Davis
+/* Authors: Jordan Kind,  Taylor Davis
  * @param {*} 
  * 
- * TODO: Incorporate POST request to DB upon new IP Address
+ * 
  * 
  */
 
@@ -30,12 +30,12 @@ export default function LayoutTextFields() {
   const { ipArray, setipArray } = useContext(context);
   const [newIp, setNewIp] = useState('');
 
+  //function to Add IP to current state to be populated, and to DB
   const onClickHandler = () => {
     if (ipArray.includes(`${newIp}`)) return;
     ipArray.push(`${newIp}`);
     console.log('ipArrayPushed:', ipArray)
     setipArray(ipArray);
-    //potential post fetch request here
     const endpoint = '/profile/ip'; 
     fetch(endpoint, {
       method: "POST", 
@@ -51,14 +51,23 @@ export default function LayoutTextFields() {
   .catch(err => console.log(err));
 }
 
+const mystyle = {
+  color: "yellow", 
+  fontFamily: "Arial",
+  border: "1",
+  borderColor: 'gray'
+}
 
   return (
     <div className={classes.root}>
       <div>
         <TextField
           id="IP Input"
-          label="Label"
-          style={{ margin: 8 }}
+          style={{ 
+            margin: 8,
+            color: 'red',
+            fontFamily: 'Arial',
+            backgroundColor: 'gray' }}
           placeholder="IP Address"
           fullWidth
           margin="normal"
@@ -69,7 +78,9 @@ export default function LayoutTextFields() {
           onChange={event => setNewIp(event.target.value)}
           // onSubmit={onClickHandler}
         />
-        <Button onClick={() => {onClickHandler()}}>
+        <Button
+         style={mystyle}
+         onClick={() => {onClickHandler()}}>
                             Submit IP</Button>
       </div>
     </div>

@@ -1,4 +1,4 @@
-  
+<!--   
 <h1>Login</h1>
 <% if (messages.error) { %> 
     <%= messages.error%>
@@ -15,4 +15,46 @@
 <button type = 'submit'>Login</button>
 </form>
 <a href="/auth/register">Register</a><br>
-<a href="/auth/google">google!</a>
+<a href="/auth/google">google!</a> -->
+
+<!doctype html>
+<html>
+<head>
+    <title>Kubra Kai Login</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        body         { padding-top:80px; }
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="col-sm-6 col-sm-offset-3">
+    <img src="/KubraKai/client/assets/kubra_kai-02.png"/>
+    <h1><span class="fa fa-sign-in"></span> Kubra Kai</h1>
+
+    <% if (messages.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+
+    <!-- LOGIN FORM -->
+    <form action="/auth/login" method="POST">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password</label>
+            <input  id="pwd" type="password" class="form-control" name="pwd" required>
+        </div>
+
+        <button type="submit" class="btn btn-warning btn-lg">Login</button>
+    </form>
+    <img src="../client/assets/btn_google_signin_dark_focus_web@2x.png" href="/auth/google" />
+    <hr>
+
+    <p>Need an account? <a href="/auth/register">Signup</a></p>
+</div>
+</div>
+</body>
+</html>

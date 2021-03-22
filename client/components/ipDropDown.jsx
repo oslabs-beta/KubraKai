@@ -4,7 +4,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { context } from '../context.js'
 /**
- * Authors: Jordan Kind, Anthony Martinez, Taylor Davis
+ * Authors: Jordan Kind, Taylor Davis
  * @param {*} 
  * 
  * 
@@ -19,8 +19,6 @@ export default function SimpleMenu() {
   }
   
   const handleClick = (event) => {
-    // setAnchorEl(event.currentTarget);
-    // const newIP = event.target.id;
     const newIp = ipArray[event.target.id]
     setIP(newIp);
     setAnchorEl(null);
@@ -35,10 +33,18 @@ export default function SimpleMenu() {
     iPmenuItems.push(  
     <MenuItem key = {`Key${i}`} id={i} onClick={handleClick}>{ipArray[i]}</MenuItem>)
   }
+  const mystyle = {
+    color: "yellow", 
+    fontFamily: "Arial",
+  }
 
   return (
     <div>
-      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={menuClick}>
+      <Button 
+      style={mystyle}
+      aria-controls="simple-menu" 
+      aria-haspopup="true" 
+      onClick={menuClick}>
         Kubernetes Cluster Address
       </Button>
       <Menu
@@ -48,10 +54,9 @@ export default function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {/* <MenuItem value="First" onClick={handleClick}>Cluster 1</MenuItem>
-        <MenuItem value="Second" onClick={handleClick}>Cluster 2</MenuItem> */iPmenuItems}
+        {iPmenuItems}
       </Menu>
-      <div>{ip}</div>
+      <div style={mystyle}>{ip}</div>
     </div>
   );
 }
