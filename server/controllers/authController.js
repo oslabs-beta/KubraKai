@@ -23,7 +23,6 @@ userController.register = (req, res, next) =>{
     .then(queryResult =>{
       db.query(queryStrLocalUsers, [hashedPassword, email])
       .then(hashedResult =>{
-        res.redirect('/auth/login');
         return next();
       })    
       .catch(error=>{
