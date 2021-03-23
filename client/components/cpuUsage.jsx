@@ -20,14 +20,15 @@ export default function CpuUsage(props){
   useEffect(() => {
     console.log("endpoint", endpoint)
     parseData();
-  }, []);
+  }, [ip]);
 
   function parseData(){
     fetch(endpoint)
       .then(data => data.json())
       .then(result =>{        
         setCpuUsage(result.data.result[0].values);
-      })    
+      })
+      .catch(err => console.log(err)); 
   }
   
   const data = {

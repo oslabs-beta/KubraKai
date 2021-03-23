@@ -20,14 +20,15 @@ export default function NetworkTransmit(props){
 
   useEffect(() => {
     parseData();
-  }, []);
+  }, [ip]);
 
   function parseData(){
     fetch(endpoint)
       .then(data => data.json())
       .then(result =>{        
         setNetworkUsage(result.data.result[0].values);
-        setNetworkLabels(result.data.result[0].metric.device);
+        setNetworkLabels(result.data.result[0].metric.device)
+        .catch(err => console.log(err));
       })    
   }
   
