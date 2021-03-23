@@ -16,16 +16,17 @@ import Button from '@material-ui/core/Button';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    justifyContent: 'center',
     flexWrap: 'wrap',
   },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: '25ch',
+    width: '20ch',
   },
 }));
 
-export default function LayoutTextFields() {
+export default function ipInput() {
   const classes = useStyles();
   const { ipArray, setipArray } = useContext(context);
   const [newIp, setNewIp] = useState('');
@@ -54,8 +55,8 @@ export default function LayoutTextFields() {
 const mystyle = {
   color: "yellow", 
   fontFamily: "Arial",
-  border: "1",
-  borderColor: 'gray'
+  border: "1px solid red",
+  margin: '10px'
 }
 
   return (
