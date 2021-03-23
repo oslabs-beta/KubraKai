@@ -5,7 +5,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { context } from '../context.js'
 /**
  * Authors: Jordan Kind, Taylor Davis
- * @param {*} 
+ * Drop Down Component to Display IP Addrresses, as well as create
+ * clickable buttons to Fetch new data upon updated IP address toggle. 
  * 
  * 
  * 
@@ -28,9 +29,10 @@ export default function SimpleMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  
+
+  // Create Array to Populate W/ function upon each new render. 
   const iPmenuItems = [];
-  const ipMenuCreate = () => {
+ 
   if (ipArray.length > 0) {
   for(let i = 0; i < ipArray.length; i++) {
     iPmenuItems.push(  
@@ -45,8 +47,6 @@ export default function SimpleMenu() {
     onClick={handleClick}>{ipArray[i]}</MenuItem>)
     }
   }
-  return;
-  }
 
   const mystyle = {
     color: "yellow", 
@@ -55,10 +55,6 @@ export default function SimpleMenu() {
     alignItems: "baseline", 
     fontFamily: "Arial",
   }
-
-  useEffect(() => {
-    ipMenuCreate();
-  })
 
   return (
     <div style={mystyle}>

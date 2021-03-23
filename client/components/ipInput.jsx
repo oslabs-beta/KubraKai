@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 
 
 /* Authors: Jordan Kind,  Taylor Davis
- * @param {*} 
+ * 
  * 
  * 
  * 
@@ -33,6 +33,7 @@ export default function ipInput() {
 
   //function to Add IP to current state to be populated, and to DB
   const onClickHandler = () => {
+    document.getElementById("ipInput").value = "";
     if (ipArray.includes(`${newIp}`)) return;
     ipArray.push(`${newIp}`);
     console.log('ipArrayPushed:', ipArray)
@@ -63,7 +64,7 @@ const mystyle = {
     <div className={classes.root}>
       <div>
         <TextField
-          id="IP Input"
+          id="ipInput"
           style={{ 
             margin: 8,
             color: 'red',

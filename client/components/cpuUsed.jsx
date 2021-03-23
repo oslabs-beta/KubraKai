@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
-import {Pie, Doughnut} from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 import Container from '@material-ui/core/Container';
 import { context } from '../context.js'
 import '../style.css'
 
 /**
  * Authors: Jordan King, Anthony Martinez, Taylor Davis
- * 
+ * Donut Graph Component used to display our CPU Usage vs Actual CPU Availible
+ * UseEffect Hook to trigger API call upon each update of the "ip" property on context. 
+ * Mater
  * 
  * 
  */

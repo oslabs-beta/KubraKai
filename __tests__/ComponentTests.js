@@ -1,16 +1,22 @@
 import React from 'react';
-import { configure, mount, render, shallow } from 'enzyme';
+import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import toJson from 'enzyme-to-json';
 import "regenerator-runtime/runtime.js";
 import { context } from '../client/context';
-import Button from '@material-ui/core/Button'; 
 
+/**
+ * Authors: Taylor Davis
+ * Testing suite to test components are rendering the correct HTML elements. 
+ * 
+ * 
+ * 
+ */
 
 import IpInput from '../client/components/ipInput';
 configure({adapter: new Adapter()});
 
-describe('React unit tests', () => {
+describe('Component Tests', () => {
     describe('ipInput', () => {
         let wrapper; 
 

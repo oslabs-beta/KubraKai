@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Container from '@material-ui/core/Container';
-// import "./styles.css"; 
 import { context } from '../context.js'
 import { Line } from "react-chartjs-2";
 
 /**
  * Authors: Jordan Kind, Anthony Martinez, Taylor Davis
- * @param {*} props 
+ * Line Graph component to expose our CPU Used via a Restful API call PromQL DB.
+ * UseEffect Hook to Parse the response Data each time the "ip" property on state is 
+ * changes. 
  * 
  * 
  * 
@@ -16,7 +17,7 @@ export default function CpuUsage(props){
   const { ip } = useContext(context);
   const [cpuUsage, setCpuUsage] = useState([]);
   const endpoint = `http://${ip}:8080/api/v1/query_range?query=sum(rate(container_cpu_usage_seconds_total{id=%22/%22}[1m]))/sum((machine_cpu_cores)*100)&start=2021-03-10T19:12:52.00Z&end=2021-03-10T20:12:52.00Z&step=1m`
-
+  
   useEffect(() => {
     console.log("endpoint", endpoint)
     parseData();
