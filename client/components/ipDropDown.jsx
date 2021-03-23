@@ -14,6 +14,7 @@ export default function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { ip, setIP, ipArray } = useContext(context);
 
+
   const menuClick = (event) => {
     setAnchorEl(event.currentTarget);
   }
@@ -27,8 +28,10 @@ export default function SimpleMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  
   const iPmenuItems = [];
+  const ipMenuCreate = () => {
+  if (ipArray.length > 0) {
   for(let i = 0; i < ipArray.length; i++) {
     iPmenuItems.push(  
     <MenuItem 
@@ -40,6 +43,9 @@ export default function SimpleMenu() {
     key = {`Key${i}`} 
     id={i} 
     onClick={handleClick}>{ipArray[i]}</MenuItem>)
+    }
+  }
+  return;
   }
 
   const mystyle = {
@@ -49,6 +55,10 @@ export default function SimpleMenu() {
     alignItems: "baseline", 
     fontFamily: "Arial",
   }
+
+  useEffect(() => {
+    ipMenuCreate();
+  })
 
   return (
     <div style={mystyle}>
