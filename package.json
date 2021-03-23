@@ -28,7 +28,10 @@
  "homepage": "https://github.com/thestinx/KubraKai#readme",
  "jest": {
   "setupFilesAfterEnv": [
-   "./jest-setup.js"
+   "<rootDir>/jest-setup.js"
+  ],
+  "snapshotSerializer": [
+    "enzyme-to-json/serializer"
   ],
   "globalTeardown": "./jest-teardown.js"
  },
