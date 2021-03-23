@@ -14,9 +14,8 @@ import { context } from '../context.js';
 
 export default function Account(props) {  
   const [ipArray, setipArray] = useState([]);
-  const [ip, setIP] = useState('96.126.99.36');
   const getIps = () => { 
-    if(ipArray.length === 0) {
+    if(ipArray.length < 1) {
       fetch('/profile/ip')
       .then(res => res.json())
       .then(res => {
@@ -29,16 +28,17 @@ export default function Account(props) {
         setipArray(newArr);
         setIP(newArr[0]);
       })
-        .catch(err => console.log(err));
-      }
-      return;
-    };
-      
-      useEffect(() => {
-       getIps();
-      })
+      .catch(err => console.log(err));
+    }
+    return;
+  };
+  
+  useEffect(() => {
+    getIps();
+  }, [ip]);
+  
+  const [ip, setIP] = useState(ipArray[0]);
 
-      
   const state = {
     ip,
     setIP,

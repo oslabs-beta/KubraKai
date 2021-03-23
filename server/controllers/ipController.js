@@ -7,7 +7,7 @@ ipController.newIp = (req,res,next) => {
   const { ip } = req.body;
   console.log(req.body);
   const email = req.session.passport.user;
-  const queryStrNewIp = `insert into userIp (_id, email_fk, userIp) values(DEFAULT, $1, $2)`;
+  const queryStrNewIp = `insert into userIp (email_fk, userIp) values ($1, $2)`;
 
   db.query(queryStrNewIp, [email, ip])
     .then (ip => {

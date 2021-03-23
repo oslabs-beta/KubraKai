@@ -26,12 +26,20 @@ CREATE TABLE oauthUsers(
 );
 
 CREATE TABLE userIp(
-  _id serial PRIMARY KEY, 
-  userIp varchar UNIQUE, 
+  userIp varchar NOT NULL, 
   email_fk varchar NOT NULL,
-  FOREIGN KEY (email_fk)
+  PRIMARY KEY(userIp, email_fk)
+  FOREIGN KEY (email_fk),
     REFERENCES users(email)
 );
+
+-- CREATE TABLE userIp(
+--   _id serial PRIMARY KEY, 
+--   userIp varchar UNIQUE, 
+--   email_fk varchar NOT NULL,
+--   FOREIGN KEY (email_fk)
+--     REFERENCES users(email)
+-- );
 
 
 insert into users (firstName, lastName, email) values ('Daniel', 'Balistocky','thestinx@gmail.com');
@@ -42,6 +50,7 @@ insert into localUsers (_id, pwd, email_fk) values (DEFAULT, 'user1', 'user1@use
 
 select * from users inner join localUsers on email_fk = email;
 select * from users inner join oauthUsers on email_fk = email;
+select * from users inner join userIp on email_fk = email;
 
 
 

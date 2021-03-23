@@ -35,9 +35,8 @@ export default function CpuUsage(props) {
         fetch(`http://${ip}:8080/api/v1/query?query= sum (rate (container_cpu_usage_seconds_total{id="/"}[1m])) / sum (machine_cpu_cores) * 100`)
         .then(data => data.json())
         .then(data => setCpuUsed(data["data"]["result"][0]["value"][1]))
-        // .then(data => data["data"]["result"])
-        // .then(data => console.log(data))
-    })
+        .catch(err => console.log(err));
+    }, [ip])
 
     return(
       

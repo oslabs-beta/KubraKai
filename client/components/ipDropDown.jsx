@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -41,6 +41,7 @@ export default function SimpleMenu() {
     id={i} 
     onClick={handleClick}>{ipArray[i]}</MenuItem>)
   }
+
   const mystyle = {
     color: "yellow", 
     display: "flex", 
