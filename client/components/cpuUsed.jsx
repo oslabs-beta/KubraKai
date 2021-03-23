@@ -5,7 +5,7 @@ import { context } from '../context.js'
 import '../style.css'
 
 /**
- * Authors: Jordan King, Anthony Martinez
+ * Authors: Jordan King, Anthony Martinez, Taylor Davis
  * 
  * 
  * 

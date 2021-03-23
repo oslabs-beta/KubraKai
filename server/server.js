@@ -15,8 +15,9 @@ const bodyParser = require('body-parser');
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view-engine','ejs')
+app.use(express.static('./views'))
 app.use(bodyParser.json());
 app.use('*', cors());
 
@@ -43,13 +44,13 @@ app.use(passport.session())
 //Router
 app.use('/auth', checkNotAuthenticated, authRouter);
 
-app.use('/profile',profileRouter);
+app.use('/profile', checkAuthenticated, profileRouter);
 
 //Dashboard
 app.get("/", 
   checkAuthenticated,  
   (req, res) => {
-    req.session.viewCount +=1
+    req.session.viewCount +=1;
     res.sendFile(path.resolve(__dirname, "../index.html"));
 });
 
