@@ -49,23 +49,26 @@ export default function Account(props) {
   const mystyle = {
     color: "red", 
     fontFamily: "Arial",
+    display: "flex", 
+    justifyContent: "center", 
   }
 
 
   return(
     <div 
       style={{
-        backgroundColor: "black",
+        backgroundColor: "black", 
       }
       }>
       <header
-      style={mystyle}>Welcome to Kubra Kai </header>    
+      style={mystyle}>
+        <img src="../client/assets/rsz_1rsz_kubra_kai-02.png" >
+          </img></header>    
       <context.Provider value = {state}>
       <DropDown />
-      <Input/>
+      <Input />
       <MetricsContainer className="metricsContainer"/>   
       </context.Provider>  
     </div>
-      
   )
 }

@@ -31,23 +31,36 @@ export default function SimpleMenu() {
   const iPmenuItems = [];
   for(let i = 0; i < ipArray.length; i++) {
     iPmenuItems.push(  
-    <MenuItem key = {`Key${i}`} id={i} onClick={handleClick}>{ipArray[i]}</MenuItem>)
+    <MenuItem 
+    style={{
+      background: "gray",
+      color: "black", 
+      fontFamily: "Arial"
+    }}
+    key = {`Key${i}`} 
+    id={i} 
+    onClick={handleClick}>{ipArray[i]}</MenuItem>)
   }
   const mystyle = {
     color: "yellow", 
+    display: "flex", 
+    justifyContent: "center", 
+    alignItems: "baseline", 
     fontFamily: "Arial",
   }
 
   return (
-    <div>
+    <div style={mystyle}>
       <Button 
-      style={mystyle}
+      style={{color: "yellow"}}
       aria-controls="simple-menu" 
       aria-haspopup="true" 
       onClick={menuClick}>
         Kubernetes Cluster Address
       </Button>
+      <div>{ip}</div>
       <Menu
+        style={{mystyle}}
         id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
@@ -56,7 +69,6 @@ export default function SimpleMenu() {
       >
         {iPmenuItems}
       </Menu>
-      <div style={mystyle}>{ip}</div>
     </div>
   );
 }
