@@ -31,7 +31,7 @@
    "<rootDir>/jest-setup.js"
   ],
   "snapshotSerializer": [
-    "enzyme-to-json/serializer"
+   "enzyme-to-json/serializer"
   ],
   "globalTeardown": "./jest-teardown.js"
  },
