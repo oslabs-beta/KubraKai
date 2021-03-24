@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     width: '20ch',
   },
 }));
+
 export default function ipInput() {
   const classes = useStyles();
   const { ipArray, setipArray } = useContext(context);
@@ -38,19 +39,21 @@ export default function ipInput() {
       headers: { 
         'content-type' : 'application/json'
       }
-  })
-  .then(ip => ip.json())
-  .then(ip => {
-      console.log(ip);
-  })
-  .catch(err => console.log(err));
-};
-const mystyle = {
-  color: "yellow", 
-  fontFamily: "Arial",
-  border: "1px solid red",
-  margin: '10px'
-};
+    })
+    .then(ip => ip.json())
+    .then(ip => {
+        console.log(ip);
+    })
+    .catch(err => console.log(err));
+  };
+
+  const mystyle = {
+    color: "yellow", 
+    fontFamily: "Arial",
+    border: "1px solid red",
+    margin: '10px'
+  };
+
   return (
     <div className={classes.root}>
       <div>
@@ -60,7 +63,8 @@ const mystyle = {
             margin: 8,
             color: 'red',
             fontFamily: 'Arial',
-            backgroundColor: 'gray' }}
+            backgroundColor: 'gray' 
+          }}
           placeholder="IP Address"
           fullWidth
           margin="normal"
