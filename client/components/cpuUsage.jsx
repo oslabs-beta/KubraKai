@@ -7,7 +7,8 @@ import { Line } from "react-chartjs-2";
  * Authors: Jordan Kind, Anthony Martinez, Taylor Davis
  * Line Graph component to expose our CPU Used via a Restful API call PromQL DB.
  * UseEffect Hook to Parse the response Data each time the "ip" property on state is 
- * changes. 
+ * changed. 
+ * 
  */
 
 export default function CpuUsage(props){
@@ -27,11 +28,11 @@ export default function CpuUsage(props){
   // parse the data recieved and populate it to cpuUsage property
   function parseData(){
     fetch(endpoint)
-      .then(data => data.json())
-      .then(result =>{        
-        setCpuUsage(result.data.result[0].values);
-      })
-      .catch(err => console.log(err)); 
+    .then(data => data.json())
+    .then(result =>{        
+      setCpuUsage(result.data.result[0].values);
+    })
+    .catch(err => console.log(err)); 
   }
   // Format Data recieved from fetch to be rendered in Line Graph
   const data = {

@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import CpuUsage from './CpuUsage.jsx';
+import CpuUsage from './cpuUsage.jsx';
 import CpuUsed from './cpuUsed.jsx';
 import NetworkTransmit from './NetworkTransm';
 import '../style.css'
 
-/* Authors: Anthony Martinez
- * 
- * 
- * 
- * 
+/**
+ * TODO: componentArray should dynamically get populated by
+ *       the end user. 
+ *       
  */
-
 const componentArray = [<CpuUsed />, <CpuUsage />, <NetworkTransmit />]
 const numberOfComponents = componentArray.length;
-// fake data generator
+
 const getItems = count =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
     id: `item-${k}`,
     content: componentArray[k],
   }));
 
-// a little function to help us with reordering the result
+// a function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
@@ -32,7 +30,7 @@ const reorder = (list, startIndex, endIndex) => {
 const grid = 8;
 
 const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
+  //styles to make the items look a bit nicer
   userSelect: 'none',
   padding: 2*grid,
   height: 400,
@@ -118,5 +116,4 @@ class App extends Component {
   }
 }
 
-// Put the thing into the DOM!
 export default App;
