@@ -1,14 +1,14 @@
 const bcrypt = require('bcrypt')
 const db = require('../../model/userModel');
-
-const userController = {};
-
 /**
  * Controller that inserts a new user into the user and localUsers tables.
  * @author Danny Balistocky and Anthony Martinez
  * 
  * TODO: Use transaction to capture queryStrUser and queryStrLocalUser
+ * TODO: Registering 'locally' new Users loads all of the current IP Addresses from 
+ * similarly created Users. 
  */
+const userController = {};
 userController.register = (req, res, next) =>{
   const {firstname, lastname, email, pwd} = req.body
   const queryStrUser = `insert into users (firstname, lastname, email) values 

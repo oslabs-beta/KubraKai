@@ -6,17 +6,14 @@ import { context } from '../context.js';
 
 /**
  * Authors: Jordan Kind, Anthony Martinez, Taylor Davis
- * @param {*} props 
- * 
- * 
- * 
+ * Dashboard Component that houses all children components. 
+ * Initialization of State and passing of Context happens here. 
  */
 
 export default function Account(props) {  
   const [ipArray, setipArray] = useState([]);
-  const [ip, setIP] = useState('96.126.99.36');
   const getIps = () => { 
-    if(ipArray.length === 0) {
+    if(ipArray.length < 1) {
       fetch('/profile/ip')
       .then(res => res.json())
       .then(res => {
@@ -29,37 +26,29 @@ export default function Account(props) {
         setipArray(newArr);
         setIP(newArr[0]);
       })
-        .catch(err => console.log(err));
-      }
-      return;
-    };
-      
-      useEffect(() => {
-       getIps();
-      })
-
-      
+      .catch(err => console.log(err));
+    }
+    return;
+  };
+  useEffect(() => {
+    getIps();
+  }, [ip]);
+  const [ip, setIP] = useState(ipArray[0]);
   const state = {
     ip,
     setIP,
     ipArray,
     setipArray,
-  }
-
+  };
   const mystyle = {
     color: "red", 
     fontFamily: "Arial",
     display: "flex", 
     justifyContent: "center", 
-  }
-
-
+  };
   return(
     <div 
-      style={{
-        backgroundColor: "black", 
-      }
-      }>
+      style={{ backgroundColor: "black" }}>
       <header
       style={mystyle}>
         <img src="../client/assets/rsz_1rsz_kubra_kai-02.png" >

@@ -4,15 +4,9 @@ import TextField from '@material-ui/core/TextField';
 import { context } from '../context.js'
 import Button from '@material-ui/core/Button'; 
 
-
-
 /* Authors: Jordan Kind,  Taylor Davis
- * @param {*} 
- * 
- * 
- * 
+ * Text Box component to allow User's to enter in User specific IP Addresses to track. 
  */
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -25,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     width: '20ch',
   },
 }));
-
 export default function ipInput() {
   const classes = useStyles();
   const { ipArray, setipArray } = useContext(context);
@@ -33,6 +26,7 @@ export default function ipInput() {
 
   //function to Add IP to current state to be populated, and to DB
   const onClickHandler = () => {
+    document.getElementById("ipInput").value = "";
     if (ipArray.includes(`${newIp}`)) return;
     ipArray.push(`${newIp}`);
     console.log('ipArrayPushed:', ipArray)
@@ -50,20 +44,18 @@ export default function ipInput() {
       console.log(ip);
   })
   .catch(err => console.log(err));
-}
-
+};
 const mystyle = {
   color: "yellow", 
   fontFamily: "Arial",
   border: "1px solid red",
   margin: '10px'
-}
-
+};
   return (
     <div className={classes.root}>
       <div>
         <TextField
-          id="IP Input"
+          id="ipInput"
           style={{ 
             margin: 8,
             color: 'red',
