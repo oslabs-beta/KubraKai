@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
 import CpuUsage from './CpuUsage.jsx';
 import CpuUsed from './cpuUsed.jsx';
 import NetworkTransmit from './NetworkTransm';
 import '../style.css'
-//create an array of components
-//[cpuUsage, pod chart, other shit, another chart]
+
+/* Authors: Anthony Martinez
+ * 
+ * 
+ * 
+ * 
+ */
+
 const componentArray = [<CpuUsed />, <CpuUsage />, <NetworkTransmit />]
 const numberOfComponents = componentArray.length;
 // fake data generator
@@ -22,7 +26,6 @@ const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
-
   return result;
 };
 
