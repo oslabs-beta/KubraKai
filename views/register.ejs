@@ -1,31 +1,10 @@
-<!-- <h1>register</h1>
-<form action="/auth/register" method='POST'>
-  <div>
-      <label for ="firstname">First Name</label>
-      <input type='text' id='firstname' name = 'firstname' required>
-  </div>
-  <div>
-    <label for ="lastname">Last Name</label>
-    <input type='text' id='lastname' name = 'lastname' required>
-</div>
-  <div>
-    <label for ="email">Email</label>
-    <input type='email' id='email' name = 'email' required>
-</div>
-<div>
-    <label for ="pwd">Password</label>
-    <input type='password' id='pwd' name = 'pwd' required>
-</div>
-<button type = 'submit'>register</button>
-</form>
-<a href="/auth/login">Login</a> -->
-
 <!doctype html>
 <html>
 <head>
     <title>Node Authentication</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="../client/assets/kubra_kai-02.ico">
     <style>
         body         { padding-top:80px; }
     </style>
@@ -40,7 +19,7 @@
         <div class="alert alert-danger"><%= message %></div>
     <% } %>
 
-    <!-- LOGIN FORM -->
+    <!-- Register FORM -->
     <form action="/auth/register" method="POST">
       <div class="form-group">
         <label for="firstname">First Name</label>

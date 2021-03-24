@@ -22,7 +22,9 @@ export default function NetworkTransmit(props){
   const { ip } = useContext(context)
   const [networkUsage, setNetworkUsage] = useState([]);
   const [networkLabels, setNetworkLabels] = useState([]);
-  const endpoint = `http://${ip}:8080/api/v1/query_range?query=rate(node_network_transmit_bytes_total{job="node-exporter",instance="192.168.136.62:9100",device!="lo"}[1m])&start=${previous}&end=${current}&step=1m`
+
+  // TODO: Current Component is hardcoded: Need to Update Query, think "instance" is the key. 
+  const endpoint = `http://104.200.26.218:8080/api/v1/query_range?query=rate(node_network_transmit_bytes_total{job="node-exporter",instance="192.168.136.62:9100",device!="lo"}[1m])&start=${previous}&end=${current}&step=1m`
 
   useEffect(() => {
     parseData();

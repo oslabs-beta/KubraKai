@@ -5,6 +5,8 @@ const db = require('../../model/userModel');
  * @author Danny Balistocky and Anthony Martinez
  * 
  * TODO: Use transaction to capture queryStrUser and queryStrLocalUser
+ * TODO: Registering 'locally' new Users loads all of the current IP Addresses from 
+ * similarly created Users. 
  */
 const userController = {};
 userController.register = (req, res, next) =>{
@@ -13,8 +15,6 @@ userController.register = (req, res, next) =>{
                           ($1, $2, $3);`
   const queryStrLocalUsers = `insert into localUsers (_id, pwd, email_fk) values 
   (DEFAULT, $1, $2);`
-
-  // const queryStrUserIp = ``
 
   const saltRounds = 10
   bcrypt.hash(pwd, saltRounds)

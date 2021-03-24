@@ -1,7 +1,7 @@
 const db = require('../../model/userModel');
 
 /* Authors: Anthony Martinez,  Taylor Davis
-* Controller to Create a newIp to be saved to user Profile. 
+* Controller to Create a newIp to be saved to user Profile.
 */
 
 const ipController = {};
