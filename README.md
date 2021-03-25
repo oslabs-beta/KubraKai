@@ -85,11 +85,11 @@ Key features include:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running, follow these simple steps.
+To get a local copy up and running, follow these steps.
 
 ### Prerequisites
-1.  Crate a [Google OAth](https://developers.google.com/identity/protocols/oauth2) account 
-2.  Created a Postgres user database for the tables defined in /model/schema.sql
+1.  Crate a [Google OAth](https://developers.google.com/identity/protocols/oauth2) account.
+2.  Created a Postgres user database for the tables defined in /model/schema.sql.
 3.  Expose metrics using Prometheus from a Kubernetes cluster.  You can either expose a live cluster or use [MiniKube](https://minikube.sigs.k8s.io/docs/start/). 
 
 ### Setup
@@ -108,7 +108,7 @@ To get a local copy up and running, follow these simple steps.
 
 Anthony Martinez - [GitHub](https://github.com/tony-mtz/) - [LinkedIn](https://www.linkedin.com/in/anthony-martinez-8609683/)
 
-Danny Balistocky - [GitHub](https://github.com/thestinx) - [@LinkedIn](https://www.linkedin.com/in/Danny-Balistocky/)
+Danny Balistocky - [GitHub](https://github.com/thestinx) - [LinkedIn](https://www.linkedin.com/in/Danny-Balistocky/)
 
 Jordan King - [GitHub](https://github.com/jordanking7/) - [LinkedIn](https://www.linkedin.com/in/jordan-king7/)
 
