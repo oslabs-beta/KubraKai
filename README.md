@@ -3,7 +3,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/oslabs-beta/KubraKai">
-    <img src="https://github.com/tony-mtz/KubraKai/blob/images/images/logo.png" alt="Logo" length="300px" width="150px">
+    <img src="https://github.com/tony-mtz/KubraKai/blob/images/images/logo.png" alt="Logo" length="350px" width="350px">
   </a>
 
   <h3 align="center">KubraKai</h3>
