@@ -32,9 +32,6 @@
     </li>
     <li>
       <a href="#demo">Demo</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -104,21 +101,6 @@ To get a local copy up and running, follow these simple steps.
 3. npm run build
 4. Create an .env file to store sensetive data
 5. npm run dev
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/oslabs-beta/atomos.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-3. Create a build directory
-   ```sh
-   npm run build
-   ```
-4. Load the unpacked extension from `src/extension/build` to Chrome
-
 
 
 <!-- CONTRIBUTORS -->
