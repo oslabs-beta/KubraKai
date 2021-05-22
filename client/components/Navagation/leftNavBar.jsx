@@ -23,7 +23,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import { Link as RouterLink } from 'react-router-dom';
-
+import withWidth from '@material-ui/core/withWidth';
 
 const drawerWidth = 60;
 
@@ -70,7 +70,15 @@ function ResponsiveDrawer(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  
+  const toolbarVisible = () =>{
+    if(props.width === 'xs'){
+      return true
+    }
+    return false
+  }
 
+  console.log('toolbar func', toolbarVisible())
 
   const itemsList = [
     {
@@ -116,7 +124,8 @@ function ResponsiveDrawer(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      
+      {toolbarVisible() && <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -128,10 +137,10 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Responsive drawer
+            width {props.width}
           </Typography>
         </Toolbar>
-      </AppBar>
+      </AppBar>}
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
@@ -175,4 +184,4 @@ ResponsiveDrawer.propTypes = {
   window: PropTypes.func,
 };
 
-export default (ResponsiveDrawer);
+export default withWidth()(ResponsiveDrawer);
