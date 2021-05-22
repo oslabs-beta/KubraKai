@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom'; 
 import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, InMemoryCache} from '@apollo/client';
-import Account from './containers/Account'
+import App from './containers/App'
 
 /* 
  * TODO: Currenlty, the ApolloClient is not used.
@@ -18,7 +18,8 @@ const client = new ApolloClient({
 });
 render(
   <ApolloProvider client={client}>
-    <Account />
+    <App/>
+
   </ApolloProvider>,
  document.getElementById("mainBody")
 );
