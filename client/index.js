@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, InMemoryCache} from '@apollo/client';
 import Account from './containers/Account'
+import StateProvider from './context';
 
 /* 
  * TODO: Currenlty, the ApolloClient is not used.
@@ -17,8 +18,10 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 render(
+  <StateProvider>
   <ApolloProvider client={client}>
     <Account />
-  </ApolloProvider>,
+  </ApolloProvider>
+  </StateProvider>,
  document.getElementById("mainBody")
 );

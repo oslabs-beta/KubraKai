@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { context } from '../context.js'
+import { appContext } from '../context.js'
 /**
  * Authors: Jordan Kind, Taylor Davis
  * Drop Down Component to Display IP Addrresses, as well as create
@@ -11,7 +11,7 @@ import { context } from '../context.js'
 export default function SimpleMenu() {
   //create anchor element to place a specific IP on the top to anchor our dropdown. 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { ip, setIP, ipArray } = useContext(context);
+  const { ip, setIP, ipArray } = useContext(appContext);
   const menuClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
