@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import MetricsContainer from '../components/metricsContainer.jsx'
 import DropDown from '../components/ipDropDown'
 import Input from '../components/ipInput'
-import { context } from '../context.js';
+import {appContext} from '../context';
 
 /**
  * Authors: Jordan Kind, Anthony Martinez, Taylor Davis
@@ -11,7 +11,10 @@ import { context } from '../context.js';
  */
 
 export default function Account(props) {  
-  const [ipArray, setipArray] = useState([]);
+ 
+  const {ipArray, setIpArray} = useContext(appContext)
+  const {ip, setIp} = useContext(appContext)
+
   const getIps = () => { 
     if(ipArray.length < 1) {
       fetch('/profile/ip')
@@ -23,8 +26,8 @@ export default function Account(props) {
           let ip = res[i].userip;
           newArr.push(ip)
         }
-        setipArray(newArr);
-        setIP(newArr[0]);
+        setIpArray(newArr);
+        setIp(newArr[0]);
       })
       .catch(err => console.log(err));
     }
@@ -33,31 +36,23 @@ export default function Account(props) {
   useEffect(() => {
     getIps();
   }, [ip]);
-  const [ip, setIP] = useState(ipArray[0]);
-  const state = {
-    ip,
-    setIP,
-    ipArray,
-    setipArray,
-  };
-  const mystyle = {
-    color: "red", 
-    fontFamily: "Arial",
-    display: "flex", 
-    justifyContent: "center", 
-  };
+
   return(
     <div 
       style={{ backgroundColor: "black" }}>
-      <header
-      style={mystyle}>
-        <img src="../client/assets/rsz_1rsz_kubra_kai-02.png" >
-          </img></header>    
-      <context.Provider value = {state}>
+      <header style={mystyle}>
+        <img src="../client/assets/rsz_1rsz_kubra_kai-02.png" ></img>
+      </header>    
       <DropDown />
       <Input />
       <MetricsContainer className="metricsContainer"/>   
-      </context.Provider>  
     </div>
   )
 }
+
+const mystyle = {
+  color: "red", 
+  fontFamily: "Arial",
+  display: "flex", 
+  justifyContent: "center", 
+};

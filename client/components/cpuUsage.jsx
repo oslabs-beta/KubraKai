@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Container from '@material-ui/core/Container';
-import { context } from '../context.js'
+import { appContext } from '../context'
 import { Line } from "react-chartjs-2";
 
 /**
@@ -18,7 +18,7 @@ export default function CpuUsage(props){
   const previous = date2.toISOString();
   const current = date.toISOString();
   //ip address to fetch
-  const { ip } = useContext(context);
+  const { ip } = useContext(appContext);
   const [cpuUsage, setCpuUsage] = useState([]);
   const endpoint = `http://${ip}:8080/api/v1/query_range?query=sum(rate(container_cpu_usage_seconds_total{id=%22/%22}[1m]))/sum((machine_cpu_cores)*100)&start=${previous}&end=${current}&step=1m`
   

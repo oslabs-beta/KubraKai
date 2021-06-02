@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Container from '@material-ui/core/Container';
 // import "./styles.css"; 
-import { context } from '../context.js';
+import { appContext } from '../context.js';
 import { Line } from "react-chartjs-2";
 
 /**
@@ -15,7 +15,7 @@ export default function NetworkTransmit(props){
   const previous = date2.toISOString();
   const current = date.toISOString();
 
-  const { ip } = useContext(context)
+  const { ip } = useContext(appContext)
   const [networkUsage, setNetworkUsage] = useState([]);
   const [networkLabels, setNetworkLabels] = useState([]);
 

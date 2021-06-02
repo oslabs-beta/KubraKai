@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import Container from '@material-ui/core/Container';
-import { context } from '../context.js'
+import { appContext } from '../context'
 import '../style.css'
 
 /**
@@ -13,7 +13,7 @@ import '../style.css'
 export default function CpuUsage(props) {
     const [cpuUsed, setCpuUsed] = useState(0);
     // ip address to be used in fetch request
-    const { ip } = useContext(context);
+    const { ip } = useContext(appContext);
     
     // object to be passed into donut graph
     const state = {
