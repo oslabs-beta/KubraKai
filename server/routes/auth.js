@@ -5,12 +5,6 @@ const passport = require('passport');
 const bcrypt = require('bcrypt')
 
 const authController = require('../controllers/authController')
-/* Authors: Danny Ballistocky, Anthony Martinez
- * 
- * 
- * 
- * 
- */
 
 router.get('/register', (req,res)=>{
   res.render('register.ejs')
@@ -32,8 +26,10 @@ router.get('/login', (req,res)=>{
 });
 
 //callback route for google to redirect to
-router.get('/google/redirect', passport.authenticate('google',{ failureRedirect: '/auth/login' }),(req,res)=>{
-  res.redirect('/');
+router.get('/google/redirect', 
+  passport.authenticate('google',{failureRedirect: '/auth/login' }),
+  (req,res)=>{
+    res.redirect('/');
 });
 
 //auth with google
@@ -43,7 +39,6 @@ router.get('/google', passport.authenticate('google',{
 
 /*
   TODO: Redirect or flash -> login error, or user email or pwd doesn't match ect..
-
 */
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {

@@ -3,10 +3,14 @@ import { render } from 'react-dom';
 import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, InMemoryCache} from '@apollo/client';
 import Account from './containers/Account'
-/* Authors: Jordan Kind,  Taylor Davis
- * Index JS file to import our Apollo Server for GraphQL API. 
- * Apollo Client allows us to wrap our application in a Provider.
- * The provider allows us to use GraphQL in our App. 
+
+/* 
+ * TODO: Currenlty, the ApolloClient is not used.
+ *       To use, deploy graphql_service and query at port:9000
+ *       Once connected, queries that go directly to the Prometheus
+ *       server must be replaced with graphql queries.  This
+ *       will provide a layer of abstraction that removes the need to 
+ *       write PromQL queries from the front end
   */
 const client = new ApolloClient({
   uri: 'http://localhost:8080/graphql/',
