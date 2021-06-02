@@ -14,6 +14,10 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+/* Authors: Danny Ballistocky, Anthony Martinez, Taylor Davis
+ * Server Initialization
+ */
+
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view-engine','ejs')
@@ -26,7 +30,7 @@ app.use(flash());
 
 /**
  * TODO: 
- *  -save to a session database
+ *  -save to a session redis DB
  *  -set expiration
  */
 require('./passport');

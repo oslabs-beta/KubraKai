@@ -5,7 +5,12 @@ const passport = require('passport');
 const bcrypt = require('bcrypt')
 
 const authController = require('../controllers/authController')
-
+/* Authors: Danny Ballistocky, Anthony Martinez
+ * 
+ * 
+ * 
+ * 
+ */
 
 router.get('/register', (req,res)=>{
   res.render('register.ejs')
