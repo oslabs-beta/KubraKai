@@ -16,6 +16,8 @@ userController.register = (req, res, next) =>{
   const queryStrLocalUsers = `insert into localUsers (_id, pwd, email_fk) values 
   (DEFAULT, $1, $2);`
 
+  // const queryStrUserIp = ``
+
   const saltRounds = 10
   bcrypt.hash(pwd, saltRounds)
   .then(hashedPassword =>{

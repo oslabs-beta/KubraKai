@@ -20,9 +20,10 @@ const customFields = {
  * @param {*} password 
  * @param {*} done 
  */
-const verifyCallBackLocal = (username, password, done) => {
+const verifyCallBackLocal = async (username, password, done) => {
   const queryStrselect = `select * from users inner join localUsers on email_fk = $1`;
-
+  const queryStrJoin = 'select * from users inner join userIp on email_fk = $1';
+  db.query(queryStrJoin, [username])
   db.query(queryStrselect,[username])        
   .then(user =>{
     bcrypt.compare(password,user.rows[0].pwd)

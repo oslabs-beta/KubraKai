@@ -14,8 +14,8 @@ import { Line } from "react-chartjs-2";
 export default function CpuUsage(props){
 
   const [cpuUsage, setCpuUsage] = useState([]);
-  const endpoint = `http://104.200.26.218:8080/api/v1/query_range?query=sum(rate(container_cpu_usage_seconds_total{id=%22/%22}[1m]))/sum((machine_cpu_cores)*100)&start=2021-03-10T19:12:52.00Z&end=2021-03-10T20:12:52.00Z&step=1m`
-
+  const endpoint = `http://${ip}:8080/api/v1/query_range?query=sum(rate(container_cpu_usage_seconds_total{id=%22/%22}[1m]))/sum((machine_cpu_cores)*100)&start=2021-03-10T19:12:52.00Z&end=2021-03-10T20:12:52.00Z&step=1m`
+  
   useEffect(() => {
     parseData();
   }, [ip]);
