@@ -1,28 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { context } from '../context.js'
+import { appContext } from '../context.js'
 import Button from '@material-ui/core/Button'; 
 
 /* Authors: Jordan Kind,  Taylor Davis
  * Text Box component to allow User's to enter in User specific IP Addresses to track. 
  */
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: '20ch',
-  },
-}));
 
 export default function ipInput() {
   const classes = useStyles();
-  const { ipArray, setipArray } = useContext(context);
+  const { ipArray, setipArray } = useContext(appContext);
   const [newIp, setNewIp] = useState('');
 
   //function to Add IP to current state to be populated, and to DB
@@ -83,3 +71,16 @@ export default function ipInput() {
     </div>
   );
 }
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: '20ch',
+  },
+}));
