@@ -29,10 +29,7 @@ router.get('/login', (req,res)=>{
 router.get('/google/redirect', 
   passport.authenticate('google',{failureRedirect: '/auth/login' }),
   (req,res)=>{
-<<<<<<< HEAD
-=======
     res.cookie('email',req.user.email)
->>>>>>> passing-user
     res.redirect('/');
 });
 

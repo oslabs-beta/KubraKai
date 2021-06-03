@@ -103,9 +103,6 @@ dist
 # TernJS port file
 .tern-port
 .DS_Store
-<<<<<<< HEAD
-=======
 
 build/
 package-lock.json
->>>>>>> passing-user
