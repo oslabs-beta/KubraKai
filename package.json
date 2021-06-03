@@ -7,7 +7,7 @@
   "react": "cd node_modules/react-scripts && node bin/react-scripts.js start",
   "start": "cross-env NODE_ENV=production nodemon server/server.js",
   "build": "cross-env NODE_ENV=development webpack",
-  "dev": "cross-env NODE_ENV=development concurrently \"nodemon server/server.js\" \"webpack-dev-server --open --hot\"",
+  "dev": "cross-env NODE_ENV=development concurrently \"cross-env NODE_ENV=development webpack\" \"nodemon server/server.js\" \"webpack-dev-server --hot --open\"",
   "test": "jest --verbose"
  },
  "nodemonConfig": {
@@ -97,6 +97,7 @@
   "graphql": "^15.5.0",
   "graphql-passport": "^0.6.3",
   "jest": "^26.6.3",
+  "js-cookie": "^2.2.1",
   "material-ui": "^0.20.2",
   "method-override": "^3.0.0",
   "passport": "^0.4.1",

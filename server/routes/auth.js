@@ -29,6 +29,7 @@ router.get('/login', (req,res)=>{
 router.get('/google/redirect', 
   passport.authenticate('google',{failureRedirect: '/auth/login' }),
   (req,res)=>{
+    res.cookie('email',req.user.email)
     res.redirect('/');
 });
 
@@ -44,6 +45,9 @@ router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err); }
     if (!user) { return res.redirect('/login'); }
+    // console.log('fucking dumb ass user',user)
+    res.locals.email = user.email_fk
+    res.cookie('email', user.email_fk)
     req.logIn(user, function(err) {
       if (err) { return next(err); }
       return res.redirect('/profile/');
