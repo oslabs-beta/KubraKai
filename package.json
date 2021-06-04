@@ -7,8 +7,11 @@
   "react": "cd node_modules/react-scripts && node bin/react-scripts.js start",
   "start": "cross-env NODE_ENV=production nodemon server/server.js",
   "build": "webpack --config webpack.config.js",
-  "dev": "concurrently \"webpack --config webpack.config.js\" \"webpack serve --hot --open\" \"nodemon server/server.js\"",
-  "test": "jest --verbose"
+  "dev": "concurrently \"nodemon server/server.js\" \"webpack serve --hot --open\"",
+  "dev1": " nodemon server/server.js",
+
+  "test": "jest --verbose",
+  "serve-dev": "nodemon --exec babel-node server/server.js"
  },
  "nodemonConfig": {
   "ignore": [
@@ -77,6 +80,7 @@
   "apollo-client": "^2.6.10",
   "apollo-server": "^2.21.0",
   "axios": "^0.21.1",
+  "babel-node": "0.0.1-security",
   "bcrypt": "^5.0.1",
   "body-parser": "^1.19.0",
   "chart.js": "^2.9.4",

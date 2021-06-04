@@ -37,6 +37,9 @@ export default function Account(props) {
   useEffect(() => {
     getIps();
   }, [ip]);
+  useEffect(()=>{
+
+  })
 
   return (
     <div style={{ backgroundColor: 'black' }}>

@@ -56,7 +56,10 @@ module.exports = {
     host: 'localhost',
     port: '8080',
     historyApiFallback: true,
-    proxy: { '/': { target: 'http://localhost:4000', secure: false } },
+    proxy: [
+      { '/': { target: 'http://localhost:4000', secure: false } },
+    ]
+
   },
   // set plugins
   plugins: [
