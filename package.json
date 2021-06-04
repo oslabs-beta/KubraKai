@@ -8,10 +8,7 @@
   "start": "cross-env NODE_ENV=production nodemon server/server.js",
   "build": "webpack --config webpack.config.js",
   "dev": "concurrently \"nodemon server/server.js\" \"webpack serve --hot --open\"",
-  "dev1": " nodemon server/server.js",
-
-  "test": "jest --verbose",
-  "serve-dev": "nodemon --exec babel-node server/server.js"
+  "test": "jest --verbose"
  },
  "nodemonConfig": {
   "ignore": [
