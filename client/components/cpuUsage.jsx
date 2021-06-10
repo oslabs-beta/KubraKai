@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import Container from '@material-ui/core/Container';
 import { appContext } from '../context'
 import { Line } from "react-chartjs-2";
@@ -10,7 +10,6 @@ import { Line } from "react-chartjs-2";
  * changed. 
  * 
  */
-
 export default function CpuUsage(props){
   const date = new Date();
   const date2 = new Date();

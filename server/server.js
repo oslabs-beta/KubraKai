@@ -13,7 +13,7 @@ const session = require('express-session')
 const bodyParser = require('body-parser');
 
 const app = express();
-
+const port = 4000
 /* Authors: Danny Ballistocky, Anthony Martinez, Taylor Davis
  * Server Initialization
  */
@@ -73,7 +73,7 @@ function checkNotAuthenticated(req, res, next) {
   next()
 }
 
-app.listen({ port: 4000 }, () =>
+app.listen(port, () =>
   console.log(`🚀 Server ready at 4000`)
 )
 module.exports = app;
