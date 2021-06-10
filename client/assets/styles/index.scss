@@ -1,0 +1,225 @@
+* {
+	box-sizing: border-box;
+    font-family: "Helvetica", sans-serif;
+}
+
+html {
+	background-color: #161616 !important;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+    opacity: 1;
+	animation-name: body;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 2s;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #161616 !important;
+}
+
+
+.font-primary {
+
+	@media (min-width: 300px) { font-size: 3em }
+	// Small devices (landscape phones, 576px and up)
+	@media (min-width: 576px) { font-size: 3.5em }
+
+	// Medium devices (tablets, 768px and up)
+	@media (min-width: 768px) { font-size: 3.75em }
+
+	// Large devices (desktops, 992px and up)
+	@media (min-width: 992px) { font-size: 4.25em  }
+
+	// Extra large devices (large desktops, 1200px and up)
+	@media (min-width: 1200px) { font-size: 4.5em }
+
+}
+
+.font-secondary {
+
+	@media (min-width: 300px) { font-size: 1.5em }
+
+	// Small devices (landscape phones, 576px and up)
+	@media (min-width: 576px) { font-size: 1.75em }
+
+	// Medium devices (tablets, 768px and up)
+	@media (min-width: 768px) { font-size: 1.95em }
+
+	// Large devices (desktops, 992px and up)
+	@media (min-width: 992px) { font-size: 2.1em  }
+
+	// Extra large devices (large desktops, 1200px and up)
+	@media (min-width: 1200px) { font-size: 2.25em }
+
+}
+
+.font-tertiary {
+
+	@media (min-width: 300px) { font-size: 1.00em }
+
+	// Small devices (landscape phones, 576px and up)
+	@media (min-width: 576px) { font-size: 1.15em }
+
+	// Medium devices (tablets, 768px and up)
+	@media (min-width: 768px) { font-size: 1.35em }
+
+	// Large devices (desktops, 992px and up)
+	@media (min-width: 992px) { font-size: 1.45em  }
+
+	// Extra large devices (large desktops, 1200px and up)
+	@media (min-width: 1200px) { font-size: 1.55em }
+
+}
+
+.container {
+	flex: 1 0 auto;
+}
+
+footer {
+	flex-shrink: 0;
+}
+
+.text-primary {
+	/* font-family: 'Majesti-Banner-BoldItalic', sans-serif; */
+	color: $primary!important;
+}
+
+.text-secondary {
+	/* font-family: 'Majesti-Banner-BoldItalic', sans-serif; */
+	color: $secondary!important;
+}
+
+.text-tertiary {
+	/* font-family: 'Majesti-Banner-BoldItalic', sans-serif; */
+	color: $tertiary!important;
+}
+
+.text-black {
+	/* font-family: 'Majesti-Banner-BoldItalic', sans-serif; */
+	color: $black!important;
+}
+
+.text-info {
+	color: $info!important;
+}
+
+.text-green {
+	color: $green!important;
+}
+
+.text-red {
+	color: $red!important;
+}
+
+.btn-circle {
+	border-radius: 50%;
+}
+
+.text-majesti {
+	font-family: $primary-font;
+}
+
+.text-serif {
+	font-family: sans-serif;
+}
+
+.btn-fix {
+	min-width: 100px;
+	border-radius: 0px;
+}
+// Bootstrap Overrides
+.btn-outline-primary {
+	// color: $primary!important;
+	// border-color: $primary!important;
+	&:hover {
+		color: #fff!important;
+		background-color: $primary!important;
+	}
+}
+
+.btn-success {
+	background-color: $info!important;
+	border-color: $info!important;
+	color: $white!important;
+	&:hover {
+		background-color: $info-hover!important;
+		border-color: $info-hover!important;
+	}
+}
+
+.btn-regal {
+	background-color: transparent;
+	border-radius: 10px;
+	border: solid 2px #d4d4d4;
+	color: white;
+	padding: 7px 15px 7px 15px;
+	font-weight: 700;
+	&:hover {
+		background-color: rgb(218, 218, 218);
+		border: solid 2px #ffffff;
+		color: black;
+		transition: 0.5s ease-in-out;
+
+	}
+}
+
+.btn-regal-light {
+	background-color: rgb(51, 121, 10);
+	border-radius: 10px;
+	color: white;
+	border: none;
+	padding: 10px 18px 10px 18px;
+	&:hover {
+		background-color: $secondary;
+		transition: 0.5s;
+}
+}
+
+.list-group-horizontal {
+	border: none!important;
+	border-radius: 0!important;
+	.list-group-item {
+		background-color: transparent!important;
+		padding: 5px!important;
+	}
+}
+
+.gradient {
+	background-image: -webkit-linear-gradient(
+		90deg,
+		rgba(255, 136, 124, 1) 0%,
+		rgba(182, 50, 95, 1) 35%,
+		rgba(255, 173, 0, 1) 100%
+	  ) !important; /* For Chrome and Safari */
+	  background-image: -moz-linear-gradient(
+		90deg,
+		rgba(255, 136, 124, 1) 0%,
+		rgba(182, 50, 95, 1) 35%,
+		rgba(255, 173, 0, 1) 100%
+	  ) !important; /* For old Fx (3.6 to 15) */
+	  background-image: -ms-linear-gradient(
+		90deg,
+		rgba(255, 136, 124, 1) 0%,
+		rgba(182, 50, 95, 1) 35%,
+		rgba(255, 173, 0, 1) 100%
+	  ) !important; /* For pre-releases of IE 10*/
+	  background-image: -o-linear-gradient(
+		90deg,
+		rgba(255, 136, 124, 1) 0%,
+		rgba(182, 50, 95, 1) 35%,
+		rgba(255, 173, 0, 1) 100%
+	  ) !important; /* For old Opera (11.1 to 12.0) */
+	  background-image: linear-gradient(
+		90deg,
+		rgba(255, 136, 124, 1) 0%,
+		rgba(182, 50, 95, 1) 35%,
+		rgba(255, 173, 0, 1) 100%
+	  ) !important; /* Standard syntax; must be last */
+	  color: transparent !important;
+	  -webkit-background-clip: text;
+	  background-clip: text;
+}

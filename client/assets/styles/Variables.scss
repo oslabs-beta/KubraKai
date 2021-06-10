@@ -1,0 +1,94 @@
+$white: #fff !default;
+$gray-100: #f8f9fc !default;
+$gray-200: #eaecf4 !default;
+$gray-300: #dddfeb !default;
+$gray-400: #d1d3e2 !default;
+$gray-500: #b7b9cc !default;
+$gray-600: #858796 !default;
+$gray-700: #6e707e !default;
+$gray-800: #5a5c69 !default;
+$gray-900: #3a3b45 !default;
+$black: #040404 !default;
+
+$blue: #08458b !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #e74a3b !default;
+$orange: #fd7e14 !default;
+$yellow: #f6c23e !default;
+$green: #468b00 !default;
+$teal: #20c9a6 !default;
+$cyan: #36b9cc !default;
+
+$primary: #ac676a;
+$secondary: #be645c;
+$tertiary: #008292;
+$secondary-hover: #1a1818;
+$info: #008292;
+$info-hover: #014d57;
+$light-grey: #c4c4c4;
+$dark-grey: #646464;
+
+$primary-font: 'Helvetica', sans-serif;
+$secondary-font: sans-serif;
+
+$font-weight-light: 300 !default;
+$headings-font-weight: 400 !default;
+
+$rotationAmt: -10;
+
+// Shadows
+$box-shadow-sm: 0 0.125rem 0.25rem 0 rgba($gray-900, 0.2) !default;
+$box-shadow: 0 0.15rem 1.75rem 0 rgba($gray-900, 0.15) !default;
+
+//Animations
+@keyframes rainbow {
+    0% { background-position: 100% 100% }
+    100% { background-position: 0% 0% }
+}
+
+@-moz-keyframes rainbow {
+0% { background-position: 100% 100% }
+    100% { background-position: 0% 0% }
+}
+
+@-webkit-keyframes rainbow {
+0% { background-position: 100% 100% }
+    100% { background-position: 0% 0% }
+}
+
+@-o-keyframes rainbow {
+0% { background-position: 100% 100% }
+    100% { background-position: 0% 0% }
+}
+
+@-ms-keyframes rainbow {
+0% { background-position: 100% 100% }
+    100% { background-position: 0% 0% }
+}
+
+@keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+  }
+  
+@-moz-keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
+  
+@-webkit-keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
+  
+@-o-keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
+  
+@-ms-keyframes fadeIn {
+	0% {opacity:0;}
+	100% {opacity:1;}
+}
